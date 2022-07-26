@@ -68,6 +68,7 @@ config/icon="res://icon.png"
 [autoload]
 
 JsonData="*res://Scripts/JSONData.gd"
+EnemyJson="*res://Scripts/EnemyJSON.gd"
 ParticalsCache="*res://Scripts/ParticalsCache.gd"
 Global="*res://Scripts/Global.gd"
 SavedData="*res://Scripts/SavedData.gd"
@@ -75,6 +76,7 @@ PlayerInventory="*res://Scripts/PlayerInventory.gd"
 WeaponData="*res://Scripts/WeaponData.gd"
 ItemData="*res://Scripts/itemData.gd"
 PlayerPath="*res://Scenes/Player.tscn"
+EnemyStatus="*res://Scripts/EnemyStatus.gd"
 
 [input]
 

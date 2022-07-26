@@ -1,0 +1,10 @@
+{
+   "Black Ant": {
+        "EnemyCatagory": "Insect",
+	"Description": "A black ant that has some sting"
+   },
+   "Milk Snake": {
+        "EnemyCatagory": "Reptile",
+	"Description": "Non venomous snake that has some bite"
+   }
+}

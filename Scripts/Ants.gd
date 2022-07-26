@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+var enemy_name
 export var min_speed = 50.0
 export var max_speed = 150.0
 
@@ -16,6 +16,7 @@ onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 func _ready():
 	animationTree.active = true
+	enemy_name = "Black Ant"
 
 func _physics_process(_delta):
 	match state:

@@ -9,37 +9,44 @@ enum {
 	MOVE,
 	ATTACK
 }
+var player
 var state = MOVE
 var Character = null
-var direction = Vector2.RIGHT
-var last_direction = Vector2(0, 1)
+var enemy_name
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 var rng = RandomNumberGenerator.new()
-func _ready():
-	animationTree.active = true
 
-func _physics_process(delta):
-	var player = get_tree().root.get_node("/root/PlayerPath")
+# Movement variables
+export var speed = 25
+var direction : Vector2
+var last_direction = Vector2(0, 1)
+var bounce_countdown = 0
+
+func _ready():
+	enemy_name = "Milk Snake"
+	animationTree.active = true
+	player = get_tree().root.get_node("/root/PlayerPath")
 	rng.randomize()
-	direction = choose([Vector2.RIGHT, Vector2.LEFT, Vector2.UP, Vector2.DOWN])
+	
+func _physics_process(delta):
+	
+	
 	match state:
 		MOVE:
+			var movement = direction * speed * delta
+			var collision = move_and_collide(movement)
+			if collision != null and collision.collider.name != "Player":
+				direction = direction.rotated(rng.randf_range(PI/4, PI/2))
+				bounce_countdown = rng.randi_range(2, 5)
 			move_state()
-			move(delta)
-			if direction == Vector2.RIGHT:
-				$AnimationPlayer.play("walk-right")
-			if direction == Vector2.LEFT:
-				$AnimationPlayer.play("walk-left")
-			if direction == Vector2.UP:
-				$AnimationPlayer.play("walk-up")
-			if direction == Vector2.DOWN:
-				$AnimationPlayer.play("walk-down")
+			
 		ATTACK:
 			attack_state()
 
 func move_state():
+	
 	if Character:
 		var player_direction = (Character.get_position() - self.position).normalized()
 		var _return_vector = move_and_slide(SPEED * player_direction)
@@ -79,9 +86,26 @@ func _on_DetectAttack_body_entered(body):
 		$AnimatedSprite.playing = true
 func move(delta):
 	position += direction * SPEED * delta
-func choose(array):
-	array.shuffle()
-	return array.front()
-func _on_Timer_timeout():
-	state = MOVE
 
+func _on_Timer_timeout():
+	# Calculate the position of the player relative to the skeleton
+	var player_relative_position = player.position - position
+	
+	if player_relative_position.length() <= 16:
+		# If player is near, don't move but turn toward it
+		direction = Vector2.ZERO
+		last_direction = player_relative_position.normalized()
+	elif player_relative_position.length() <= 100 and bounce_countdown == 0:
+		# If player is within range, move toward it
+		direction = player_relative_position.normalized()
+	elif bounce_countdown == 0:
+		# If player is too far, randomly decide whether to stand still or where to move
+		var random_number = rng.randf()
+		if random_number < 0.05:
+			direction = Vector2.ZERO
+		elif random_number < 0.1:
+			direction = Vector2.DOWN.rotated(rng.randf() * 2 * PI)
+	
+	# Update bounce countdown
+	if bounce_countdown > 0:
+		bounce_countdown = bounce_countdown - 1

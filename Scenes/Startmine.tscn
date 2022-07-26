@@ -476,7 +476,7 @@ position = Vector2( -11, -95 )
 [node name="Enemies" type="Node2D" parent="World/YSort"]
 
 [node name="Snake" parent="World/YSort/Enemies" instance=ExtResource( 53 )]
-position = Vector2( 262, 244 )
+position = Vector2( 251, 225 )
 
 [node name="Environment" type="Node2D" parent="World/YSort"]
 

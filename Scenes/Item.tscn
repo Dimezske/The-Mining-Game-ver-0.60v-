@@ -4,7 +4,6 @@
 [ext_resource path="res://Assets/Weapons/Guns/M4A1-icon.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/InventoryItem.gd" type="Script" id=4]
 
-
 [sub_resource type="Theme" id=1]
 
 [node name="Item" type="Node2D"]

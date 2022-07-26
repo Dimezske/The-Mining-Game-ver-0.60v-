@@ -1,6 +1,6 @@
 extends Node2D
 
-var player_initial_map_position =Vector2(200,200)
+var player_initial_map_position = Vector2(200,200)
 #var getlevel_start = preload("res://Scenes/Startmine.tscn")
 
 var player_direction = ["LEFT","RIGHT","UP","DOWN"]

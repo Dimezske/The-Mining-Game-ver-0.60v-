@@ -54,7 +54,7 @@ func _on_DetectPlayer_body_entered(body):
 		player = body
 func _on_DetectPlayer_body_exited(body):
 	if body.name == "Player":
-		player = body
+		player = null
 	
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
