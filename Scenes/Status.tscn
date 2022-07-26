@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Fonts/Roboto-Black.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Status.gd" type="Script" id=2]
+[ext_resource path="res://Assets/GUI/health-over.png" type="Texture" id=3]
+
+
+[sub_resource type="DynamicFont" id=3]
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 21
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 90, 21 )
+
+[node name="Status" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Backing" type="Panel" parent="."]
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_right = 1000.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1024, 0 )
+theme = SubResource( 4 )
+
+[node name="Backingfs" type="Panel" parent="."]
+visible = false
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_right = 1450.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1024, 0 )
+theme = SubResource( 4 )
+
+[node name="HealthContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Health" type="Panel" parent="HealthContainer"]
+margin_right = 200.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 40 )
+
+[node name="HealthBar" type="ProgressBar" parent="HealthContainer/Health"]
+modulate = Color( 0.433333, 1, 0, 1 )
+margin_right = 200.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 40 )
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/fg = SubResource( 5 )
+value = 100.0
+
+[node name="EnergyContainer" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 200.0
+margin_right = 400.0
+margin_bottom = 40.0
+
+[node name="Energy" type="Panel" parent="EnergyContainer"]
+margin_right = 200.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 40 )
+
+[node name="EnergyBar" type="ProgressBar" parent="EnergyContainer/Energy"]
+modulate = Color( 0.976471, 0.756863, 0, 1 )
+margin_right = 200.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 40 )
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_styles/fg = SubResource( 5 )
+value = 100.0
+
+[node name="CurrencyContainer" type="HBoxContainer" parent="."]
+margin_left = 300.0
+margin_right = 650.0
+margin_bottom = 40.0
+
+[node name="Currency" type="Panel" parent="CurrencyContainer"]
+margin_right = 425.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 425, 40 )
+
+[node name="CurrencyLabel" type="Label" parent="CurrencyContainer/Currency"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 45.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0.141176, 1, 0.596078, 1 )
+text = "$"
+
+[node name="Currencyfs" type="Panel" parent="CurrencyContainer"]
+margin_left = 429.0
+margin_right = 1029.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 600, 40 )
+
+[node name="CurrencyLabelfs" type="Label" parent="CurrencyContainer/Currencyfs"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 45.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0.141176, 1, 0.596078, 1 )
+text = "$"
+
+[node name="WeatherContainer" type="HBoxContainer" parent="."]
+margin_left = 775.0
+margin_right = 1025.0
+margin_bottom = 85.0
+
+[node name="Weather" type="Panel" parent="WeatherContainer"]
+margin_right = 250.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 250, 85 )
+
+[node name="WeatherLabel" type="Label" parent="WeatherContainer/Weather"]
+margin_left = 15.0
+margin_right = 93.0
+margin_bottom = 55.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0.141176, 1, 0.596078, 1 )
+text = "Weather & Time
+"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Weatherfs" type="Panel" parent="WeatherContainer"]
+visible = false
+margin_left = -200.0
+margin_right = 250.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 450, 85 )
+
+[node name="WeatherLabelfs" type="Label" parent="WeatherContainer/Weatherfs"]
+margin_left = 15.0
+margin_right = 93.0
+margin_bottom = 55.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0.141176, 1, 0.596078, 1 )
+text = "Weather & Time
+"
+__meta__ = {
+"_edit_use_anchors_": true
+}

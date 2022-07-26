@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/MineButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Machines/Liftpowerbox.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Machines/Liftplatform.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Machines/Trussing.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/LiftPlatform.gd" type="Script" id=5]
+
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+#var t := 0.0
+
+func _process(_delta: float) -> void:
+		#t += delta
+		#$Path2D/PathFollow2D.offset = t * 200.0
+	pass
+"
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 275, -202, 0, 0, 0, 0, 268, -786 )
+}
+
+[node name="MineLift" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Liftpowerbox" type="Sprite" parent="."]
+position = Vector2( 275, -671 )
+texture = ExtResource( 2 )
+
+[node name="Trussing" type="Sprite" parent="."]
+position = Vector2( 275, -493 )
+z_index = 3
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 275, -202 )
+rotate = false
+
+[node name="LiftPlatform" type="StaticBody2D" parent="Path2D/PathFollow2D"]
+script = ExtResource( 5 )
+
+[node name="Liftplatform" type="Sprite" parent="Path2D/PathFollow2D/LiftPlatform"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 3 )
+
+[node name="LiftPlatformCollision" type="CollisionPolygon2D" parent="Path2D/PathFollow2D/LiftPlatform"]
+polygon = PoolVector2Array( 178, 206, 178, -153, -173, -152, -171, 203, -226, 202, -222, -202, 232, -201, 227, 206 )
+
+[node name="MineButton2" parent="Path2D/PathFollow2D/LiftPlatform" instance=ExtResource( 1 )]
+position = Vector2( -153, -134 )
+z_index = 2
+
+[node name="MineButton" parent="Path2D/PathFollow2D/LiftPlatform" instance=ExtResource( 1 )]
+position = Vector2( 149, -134 )
+z_index = 2
+
+[node name="MineButtonCollision" type="CollisionPolygon2D" parent="Path2D/PathFollow2D/LiftPlatform/MineButton"]
+z_index = 1
+polygon = PoolVector2Array( 22, 9, 22, -15, -22, -15, -22, 9 )

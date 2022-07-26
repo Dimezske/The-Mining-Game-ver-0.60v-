@@ -1,0 +1,80 @@
+{
+   "Slime Potion": {
+        "ItemCatagory":	"Consumable",
+	"StackSize": 99,
+	"Description": "Smells just like medicine"
+   },
+   "SugarCaneSeeds": {
+        "ItemCatagory":	"Consumable",
+	"StackSize": 99,
+	"Description": "Packet of sugarcane seeds"
+   },
+   "MiningDrill Starter": {
+        "ItemCatagory": "Tool",
+	"ItemAttack": 6,
+        "ItemSpeed": 2.75,
+        "StackSize": 10,
+        "Description": "Nice for drilling"
+    },
+    "M4": {
+        "ItemCatagory": "AssaultRifle",
+        "ItemAttack": 3,
+        "ItemSpeed": 0.75,
+        "StackSize": 10,
+        "Description": "Quite a nice gun"
+    },
+     "Trm17": {
+        "ItemCatagory": "AssaultRifle",
+        "ItemAttack": 2.75,
+        "ItemSpeed": 0.65,
+        "StackSize": 10,
+        "Description": "Tactical AssaultRifle"
+    },
+    "Tac1": {
+        "ItemCatagory": "SideArm",
+        "ItemAttack": 1,
+        "ItemSpeed": 1.75,
+        "StackSize": 10,
+        "Description": "Tactical styled"
+    },
+    "9mm Ammunition": {
+        "ItemCatagory": "Ammunition",
+        "StackSize": 99,
+        "Description": "9MM Ammunition"
+    },
+    "C4 Small": {
+        "ItemCatagory": "Explosive",
+        "StackSize": 99,
+        "Description": "Compact C4 Explosive"
+    },
+    "C4 Large": {
+        "ItemCatagory": "Explosive",
+        "StackSize": 20,
+        "Description": "Larger Quantity of C4 Explosive"
+    },
+    "Brown Shirt": {
+        "ItemCatagory": "Shirt",
+        "StackSize": 1,
+        "Description": "A brown shirt!!"
+     },
+     "Blue Jeans": {
+        "ItemCatagory": "Pants",
+        "StackSize": 1,
+        "Description": "Blue jeans!!"
+      },
+      "Brown Boots": {
+        "ItemCatagory": "Shoes",
+        "StackSize": 1,
+        "Description": "Some dirty boots!!"
+      },
+      "CopperMinerals": {
+        "ItemCatagory":	"Resource",
+	"StackSize": 1000,
+	"Description": "Beautiful Granules of Copper Ore"
+      },
+      "MineRocks": {
+        "ItemCatagory":	"Resource",
+	"StackSize": 1000,
+	"Description": "Dusty Old Rocks"
+      }
+}

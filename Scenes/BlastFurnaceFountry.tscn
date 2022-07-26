@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Lights/light1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Machines/FoundryBlastFurnace.png" type="Texture" id=2]
+
+[node name="BlastFurnaceFountry" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -13, -1 )
+scale = Vector2( 1, 0.944444 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -11.6471 )
+texture_scale = 3.0
+color = Color( 1, 0.329412, 0, 1 )
+energy = 1.57
+
+[node name="Light2D" type="Light2D" parent="Light2D"]
+position = Vector2( -2, 80.4706 )
+scale = Vector2( 1, 0.944444 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -11.6471 )
+texture_scale = 3.0
+color = Color( 1, 0.329412, 0, 1 )
+energy = 1.57
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -71, -121, 44, -122, 44, -71, 60, -71, 60, -10, 98, -9, 98, 90, 60, 88, 60, 106, -87, 106, -86, -69, -70, -71 )

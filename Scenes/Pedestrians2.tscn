@@ -1,0 +1,191 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/NPCs/pedestrian2.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Pedestrians.gd" type="Script" id=2]
+
+
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 20.0
+height = 44.0
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle-down"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle-left"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle-right"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "idle-up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "walk-down"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 0, 5, 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "walk-left"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 2, 9, 2 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk-right"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 1, 7, 1 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "walk-up"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 3, 11, 3 ]
+}
+
+[node name="Pedestrians" type="Node2D"]
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 15
+collision_mask = 15
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 1 )
+hframes = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( -3, 5 )
+shape = SubResource( 11 )
+
+[node name="Timer" type="Timer" parent="KinematicBody2D"]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/idle-down = SubResource( 3 )
+anims/idle-left = SubResource( 4 )
+anims/idle-right = SubResource( 5 )
+anims/idle-up = SubResource( 6 )
+anims/walk-down = SubResource( 7 )
+anims/walk-left = SubResource( 8 )
+anims/walk-right = SubResource( 9 )
+anims/walk-up = SubResource( 10 )
+
+[connection signal="timeout" from="KinematicBody2D/Timer" to="." method="_on_Timer_timeout"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Equipment/shippingcontainer.png" type="Texture" id=1]
+
+[node name="ShippingContainer" type="StaticBody2D"]
+z_index = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 1, -113 )
+z_index = 1
+polygon = PoolVector2Array( -246, 110, 189, 110, 224, 84, 241, 47, 234, 45, 225, 43, -185, 43 )
+
+[node name="ShippingContainerSprite" type="Sprite" parent="."]
+position = Vector2( 1, -113 )
+texture = ExtResource( 1 )

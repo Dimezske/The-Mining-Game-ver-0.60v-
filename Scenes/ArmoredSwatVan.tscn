@@ -1,0 +1,143 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Vehicles/ArmoredSwatVan.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Lights/light1.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/ArmoredSwatVan.gd" type="Script" id=3]
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle_Flashing"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Light2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Light2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.027451, 0.317647, 0.92549, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Light2D:shadow_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.439216, 1, 0.52549 ), Color( 1, 1, 1, 0.843137 ), Color( 1, 0, 0, 0.686275 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/Light2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Light2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.027451, 0.317647, 0.92549, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/Light2D:shadow_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0.298039, 1, 0 ) ]
+}
+
+[node name="ArmoredSwatVan" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.75, 0.75 )
+z_index = 2
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="Light2D" type="Light2D" parent="Sprite"]
+position = Vector2( -48.75, -97.4167 )
+scale = Vector2( 3.07222, 4.27222 )
+texture = ExtResource( 2 )
+texture_scale = 4.17
+color = Color( 0.027451, 0.317647, 0.92549, 1 )
+energy = 2.16
+shadow_enabled = true
+shadow_color = Color( 0, 0.298039, 1, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle_Flashing = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -3, 19.5 )
+scale = Vector2( 0.75, 0.75 )
+polygon = PoolVector2Array( -92, 79.3333, -68, 55.3333, 45.3333, 54, 56, 51.3333, 84, 90, 129.333, 94, 162.667, 68.6667, 168, 59.3333, 216, 55.3333, 224, 39.3333, 226.667, -38, -110.667, -39.3333, -193.333, -40.6667, -212, -34, -222.667, -6, -225.333, 15.3333, -217.333, 27.3333, -217.333, 44.6667, -194.667, 54, -190.667, 46, -180, 58, -166.667, 83.3333, -137.333, 98, -101.333, 92.6667 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2( -3, 19.5 )
+scale = Vector2( 0.75, 0.75 )
+polygon = PoolVector2Array( -92, 79.3333, -68, 55.3333, 45.3333, 54, 56, 51.3333, 84, 90, 129.333, 94, 162.667, 68.6667, 168, 59.3333, 216, 55.3333, 224, 39.3333, 226.667, -38, -110.667, -39.3333, -193.333, -40.6667, -212, -34, -222.667, -6, -225.333, 15.3333, -217.333, 27.3333, -217.333, 44.6667, -194.667, 54, -190.667, 46, -180, 58, -166.667, 83.3333, -137.333, 98, -101.333, 92.6667 )

@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Enemies/antenemy_grey_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Ants.gd" type="Script" id=3]
+
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "BlackAntWalk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=6]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 144.128
+
+[sub_resource type="Animation" id=4]
+resource_name = "BlackAntWalk"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "BlackAntWalk" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "BlackAntWalk" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=8]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/Idle/node = SubResource( 8 )
+states/Idle/position = Vector2( 322, 72 )
+states/Walk/node = SubResource( 9 )
+states/Walk/position = Vector2( 540, 72 )
+transitions = [ "Idle", "Walk", SubResource( 10 ), "Walk", "Idle", SubResource( 11 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+
+[node name="Ants" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="BlackAnt" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "BlackAntWalk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
+shape = SubResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BlackAnt")
+anims/BlackAntWalk = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 13 )
+parameters/Idle/blend_position = Vector2( -0.990215, 0.017341 )
+parameters/Walk/blend_position = Vector2( 0, 0 )
+
+[connection signal="body_entered" from="DetectPlayer" to="." method="_on_DetectPlayer_body_entered"]
+[connection signal="body_exited" from="DetectPlayer" to="." method="_on_DetectPlayer_body_exited"]

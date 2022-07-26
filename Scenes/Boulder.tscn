@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Items/boulder.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 78.0256
+
+[node name="Boulder" type="StaticBody2D"]
+script = SubResource( 2 )
+
+[node name="BoulderSprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="BoulderCollision" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 57, 50, 22, 60, -33, 60, -49, 35, -57, 2, -53, -28, -18, -48, 16, -51, 52, -41, 61, -7 )
+
+[node name="DetectDrill" type="Area2D" parent="."]
+
+[node name="Boulder" type="CollisionShape2D" parent="DetectDrill"]
+position = Vector2( 3, 8 )
+shape = SubResource( 1 )

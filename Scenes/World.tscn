@@ -1,0 +1,29 @@
+[gd_scene format=2]
+
+[node name="Scene" type="Node2D"]
+
+[node name="Client" type="Node2D" parent="."]
+
+[node name="Players" type="Node2D" parent="Client"]
+
+[node name="PlayerID-01" type="Node2D" parent="Client/Players"]
+
+[node name="TileMap" type="Node2D" parent="Client"]
+
+[node name="Server" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="Server"]
+
+[node name="EnemyID-01" type="Node2D" parent="Server/Enemies"]
+
+[node name="PlayersPhysics" type="Node2D" parent="Server"]
+
+[node name="PlayersPhysicsID-01" type="Node2D" parent="Server/PlayersPhysics"]
+
+[node name="Database" type="Node2D" parent="."]
+
+[node name="PosgreSQL-Connector" type="Node2D" parent="Database"]
+
+[node name="LoginUI" type="Node2D" parent="."]
+
+[node name="UiButtons" type="Node2D" parent="LoginUI"]
