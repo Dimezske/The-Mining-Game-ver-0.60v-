@@ -1,17 +1,8 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/Ants.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Enemies/antenemy_grey_spritesheet.png" type="Texture" id=2]
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 16, 16, 16 )
+[ext_resource path="res://Assets/Enemies/Icons/Black Ant.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
@@ -23,16 +14,26 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 16, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 14 ), SubResource( 15 ) ],
-"loop": true,
-"name": "Ant-Walk-right",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "Ant-Walk-left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "Ant-Walk-right",
 "speed": 5.0
 } ]
 
@@ -306,6 +307,7 @@ start_node = "Ant_Idle"
 
 [node name="BlackAnts" type="KinematicBody2D" groups=["Enemies"]]
 script = ExtResource( 1 )
+enemy_texture = ExtResource( 3 )
 
 [node name="BlackAnt" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
@@ -339,3 +341,4 @@ parameters/Ant_Walk/blend_position = Vector2( 0, 0 )
 
 [connection signal="body_entered" from="DetectPlayer" to="." method="_on_DetectPlayer_body_entered"]
 [connection signal="body_exited" from="DetectPlayer" to="." method="_on_DetectPlayer_body_exited"]
+[connection signal="input_event" from="DetectPlayer" to="." method="_on_DetectPlayer_input_event"]

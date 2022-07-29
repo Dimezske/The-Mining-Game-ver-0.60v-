@@ -1,9 +1,9 @@
 extends Node
 
-var item_data: Dictionary
+var enemy_data: Dictionary
 
 func _ready():
-	item_data = LoadData("res://Assets/Enemies/DATA/EnemyData.json")
+	enemy_data = LoadData("res://Assets/Enemies/DATA/EnemyData.json")
 
 func LoadData(file_path):
 	var json_data

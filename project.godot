@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Ant",
+"language": "GDScript",
+"path": "res://Scripts/Ants.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Drill",
 "language": "GDScript",
 "path": "res://Scripts/Drill.gd"
@@ -50,6 +55,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/PlayerFSM.gd"
 } ]
 _global_script_class_icons={
+"Ant": "",
 "Drill": "res://Assets/Tools/drill1.png",
 "Pedestrians": "",
 "Player": "",
@@ -75,8 +81,7 @@ SavedData="*res://Scripts/SavedData.gd"
 PlayerInventory="*res://Scripts/PlayerInventory.gd"
 WeaponData="*res://Scripts/WeaponData.gd"
 ItemData="*res://Scripts/itemData.gd"
-PlayerPath="*res://Scenes/Player.tscn"
-EnemyStatus="*res://Scripts/EnemyStatus.gd"
+EventBus="*res://Scripts/EventBus.gd"
 
 [input]
 

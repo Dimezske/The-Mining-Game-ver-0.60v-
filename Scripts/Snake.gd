@@ -3,8 +3,14 @@ extends KinematicBody2D
 export var min_speed = 50.0
 export var max_speed = 150.0
 
-const SPEED= 200
+export(Texture) var enemy_texture = null
+export(String) var enemy_name = "Milk Snake"
+# export variables can be set from the editor
+export(Vector2) var enemy_texture_size = Vector2(50,50)
 
+const SPEED= 200
+onready var health = 35
+onready var max_health = 35
 enum {
 	MOVE,
 	ATTACK
@@ -12,7 +18,7 @@ enum {
 var player
 var state = MOVE
 var Character = null
-var enemy_name
+
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -25,7 +31,6 @@ var last_direction = Vector2(0, 1)
 var bounce_countdown = 0
 
 func _ready():
-	enemy_name = "Milk Snake"
 	animationTree.active = true
 	player = get_tree().root.get_node("/root/PlayerPath")
 	rng.randomize()
@@ -72,11 +77,12 @@ func _on_DetectPlayer_body_entered(body):
 	if body.name == "Player":
 		Character = body
 		animationTree.active = true
+		EventBus.emit_signal("player_detected", self)
 func _on_DetectPlayer_body_exited(body):
 	if body.name == "Player":
 		Character = null
 		animationTree.active = false
-
+		EventBus.emit_signal("player_exited", self)
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 

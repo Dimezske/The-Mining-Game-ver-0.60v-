@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/NPCs/TacticalResponseArmoredSuit.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/TacticalResponsePatrol.gd" type="Script" id=2]
-
+[ext_resource path="res://Assets/Enemies/Icons/TacticalResponseTeam_icon.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.2971
+
+[sub_resource type="CircleShape2D" id=11]
+radius = 593.742
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -159,8 +162,10 @@ tracks/0/keys = {
 
 [node name="TacticalResponsePatrol" type="Node2D"]
 script = ExtResource( 2 )
+enemy_texture = ExtResource( 3 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 position = Vector2( -2, 36 )
@@ -172,6 +177,11 @@ hframes = 24
 
 [node name="Timer" type="Timer" parent="KinematicBody2D"]
 autostart = true
+
+[node name="DetectPlayer" type="Area2D" parent="KinematicBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/DetectPlayer"]
+shape = SubResource( 11 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -185,3 +195,6 @@ anims/walk-right = SubResource( 9 )
 anims/walk-up = SubResource( 10 )
 
 [connection signal="timeout" from="KinematicBody2D/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="body_entered" from="KinematicBody2D/DetectPlayer" to="." method="_on_DetectPlayer_body_entered"]
+[connection signal="body_exited" from="KinematicBody2D/DetectPlayer" to="." method="_on_DetectPlayer_body_exited"]
+[connection signal="input_event" from="KinematicBody2D/DetectPlayer" to="." method="_on_DetectPlayer_input_event"]

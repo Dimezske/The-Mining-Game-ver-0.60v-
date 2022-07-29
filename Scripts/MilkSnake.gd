@@ -2,69 +2,55 @@ extends KinematicBody2D
 
 export var min_speed = 50.0
 export var max_speed = 150.0
-
-const SPEED= 100
-
+export(Texture) var enemy_texture = null
+export(String) var enemy_name = "Milk Snake"
+# export variables can be set from the editor
+const SPEED= 200
+onready var health = 35
+onready var max_health = 35
 enum {
-	IDLE,
-	NEW_DIRECTION,
 	MOVE,
 	ATTACK
 }
-
+var player
+var playerPath = preload("res://Scenes/Player.tscn")
 var state = MOVE
-var direction = Vector2.RIGHT
 var Character = null
+
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+var rng = RandomNumberGenerator.new()
+
+# Movement variables
+export var speed = 25
+var direction : Vector2
+var last_direction = Vector2(0, 1)
+var bounce_countdown = 0
+
 func _ready():
 	animationTree.active = true
-
+	player = playerPath.instance()
+#	player = get_tree().root.get_node("/root/PlayerPath")
+	rng.randomize()
+	
 func _physics_process(delta):
+	
+	
 	match state:
-		
-		IDLE:
-			if direction == choose([Vector2.RIGHT]):
-				$AnimationPlayer.stop()
-				$AnimationPlayer.play("idle-right")
-			if direction == choose([Vector2.LEFT]):
-				$AnimationPlayer.stop()
-				$AnimationPlayer.play("idle-left")
-			if direction == choose([Vector2.UP]):
-				$AnimationPlayer.stop()
-				$AnimationPlayer.play("idle-up")
-			if direction == choose([Vector2.DOWN]):
-				$AnimationPlayer.stop()
-				$AnimationPlayer.play("idle-down")
-			
-		NEW_DIRECTION:
-			direction = choose([Vector2.RIGHT, Vector2.UP,Vector2.LEFT, Vector2.DOWN])
-			state = choose([IDLE, MOVE])
-			if direction == choose([Vector2.RIGHT]):
-				$AnimationPlayer.play("idle-right")
-			if direction == choose([Vector2.LEFT]):
-				$AnimationPlayer.play("idle-left")
-			if direction == choose([Vector2.UP]):
-				$AnimationPlayer.play("idle-up")
-			if direction == choose([Vector2.DOWN]):
-				$AnimationPlayer.play("idle-down")
 		MOVE:
+			var movement = direction * speed * delta
+			var collision = move_and_collide(movement)
+			if collision != null and collision.collider.name != "Player":
+				direction = direction.rotated(rng.randf_range(PI/4, PI/2))
+				bounce_countdown = rng.randi_range(2, 5)
 			move_state()
-			move(delta)
-			if direction == choose([Vector2.RIGHT]):
-				$AnimationPlayer.play("walk-right")
-			if direction == choose([Vector2.LEFT]):
-				$AnimationPlayer.play("walk-left")
-			if direction == choose([Vector2.UP]):
-				$AnimationPlayer.play("walk-up")
-			if direction == choose([Vector2.DOWN]):
-				$AnimationPlayer.play("walk-down")
+			
 		ATTACK:
 			attack_state()
-	
-		
+
 func move_state():
+	
 	if Character:
 		var player_direction = (Character.get_position() - self.position).normalized()
 		var _return_vector = move_and_slide(SPEED * player_direction)
@@ -80,6 +66,7 @@ func move_state():
 		else:
 			animationState.travel("Idle")
 
+
 func attack_state():
 	#animationState.travel("Attack")
 	pass
@@ -89,39 +76,47 @@ func _on_DetectPlayer_body_entered(body):
 	if body.name == "Player":
 		Character = body
 		animationTree.active = true
-
+		EventBus.emit_signal("player_detected", self)
 func _on_DetectPlayer_body_exited(body):
 	if body.name == "Player":
 		Character = null
 		animationTree.active = false
-
+		EventBus.emit_signal("player_exited", self)
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _on_DetectAttack_body_entered(body):
 	if body.name == "Player":
 		state = ATTACK
-
+		$AnimatedSprite.playing = true
 func move(delta):
 	position += direction * SPEED * delta
-	
-func choose(array):
-	array.shuffle()
-	return array.front()
 
 func _on_Timer_timeout():
-		state = choose([IDLE, NEW_DIRECTION, MOVE])
-		$Timer.wait_time = choose([0.5, 1, 1.5])
+	# Calculate the position of the player relative to the skeleton
+	var player_relative_position = player.position - position
+	
+	if player_relative_position.length() <= 16:
+		# If player is near, don't move but turn toward it
+		direction = Vector2.ZERO
+		last_direction = player_relative_position.normalized()
+	elif player_relative_position.length() <= 100 and bounce_countdown == 0:
+		# If player is within range, move toward it
+		direction = player_relative_position.normalized()
+	elif bounce_countdown == 0:
+		# If player is too far, randomly decide whether to stand still or where to move
+		var random_number = rng.randf()
+		if random_number < 0.05:
+			direction = Vector2.ZERO
+		elif random_number < 0.1:
+			direction = Vector2.DOWN.rotated(rng.randf() * 2 * PI)
+	
+	# Update bounce countdown
+	if bounce_countdown > 0:
+		bounce_countdown = bounce_countdown - 1
 
-func create_blood_effect():
-	if Input.is_action_just_pressed("use"):
-		var BloodEffect = load("res://Assets/Effects/BloodEffect.tscn")
-		var bloodEffect = BloodEffect.instance()
-		var world = get_tree().current_scene
-		print(bloodEffect)
-		world.add_child(bloodEffect)
-		bloodEffect.global_position = global_position
-		
-func _on_Hurtbox_area_entered(_area):
-	create_blood_effect()
-	queue_free()
+
+func _on_DetectPlayer_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and Input.is_action_just_pressed("use"):
+		EventBus.emit_signal("show_ui_for_enemy", self)
+		get_tree().set_input_as_handled()

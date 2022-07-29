@@ -3,7 +3,6 @@
 [ext_resource path="res://Assets/NPCs/pedestrian2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Pedestrians.gd" type="Script" id=2]
 
-
 [sub_resource type="CapsuleShape2D" id=11]
 radius = 20.0
 height = 44.0
@@ -163,8 +162,7 @@ z_index = 1
 script = ExtResource( 2 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 2
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 texture = ExtResource( 1 )
