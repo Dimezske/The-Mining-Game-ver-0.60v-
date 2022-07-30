@@ -1,0 +1,207 @@
+BASE#####
+extends Node2D
+class_name StateMachine
+
+var state_machine = null
+
+var player: Player = null
+var getPlayer = get_owner()
+var player_velocity = Vector2()
+var player_speed = 200
+var player_energy = 50
+
+enum STATES{IDLE, WALK, RUN, USE, SHOOT}
+var state: int
+var parent = get_parent()
+
+func _physics_process(_delta):
+	match state:
+	   STATES.IDLE:
+		   state = STATES.IDLE
+	   STATES.WALK:
+		   state = STATES.WALK
+	   STATES.RUN:
+		   state = STATES.RUN
+	   STATES.USE:
+		   state = STATES.USE
+	   STATES.SHOOT:
+		   state = STATES.SHOOT
+
+func set_state(new_value:int) -> void:
+	if state == new_value:
+		return
+	var _name = STATES.keys()[new_value]
+	var method_name:String = "on_" + STATES.keys()[new_value]
+	
+	if has_method(method_name):
+		call_deferred(method_name)
+
+	state = new_value
+
+func on_IDLE() -> void:
+	STATES.IDLE = $Idle
+	print("IS IDLING")
+func on_WALK() -> void:
+	STATES.WALK = $Walk
+	player_speed = 200
+	print("IS WALKING")
+func on_RUN() -> void:
+	STATES.RUN = $Run
+	player_speed = 300
+	print("IS RUNNING")
+func on_USE() -> void:
+	STATES.USE = $Use
+	print("IS USING")
+func on_SHOOT() -> void:
+	STATES.SHOOT = $Shoot
+	print("IS SHOOTING")
+####
+
+velocity = Vector2()
+	speed = Global.player_speed
+#states = $StateMachine/Idle
+	if Input.is_action_pressed("sprint"):
+		#states = $StateMachine/Run
+#		Global.player_isRunning = true 
+#		speed = 300
+		pass
+	else:
+		speed = 200
+
+
+	# not sure what these are for
+	for child in self.get_children():
+		if child.is_in_group("Position2D/Tools"):
+			child.animate(velocity)
+	for child in self.get_children():
+		if child.is_in_group("Position2D/Weapons"):
+			child.animate(velocity)
+
+
+	#Player Animations for Idle and Walk
+#	if velocity == Vector2.ZERO:
+#		$AnimationTree.get("parameters/playback").travel("Idle")
+#	else:
+#		$AnimationTree.get("parameters/playback").travel("Walk")
+#		$AnimationTree.set("parameters/Idle/blend_position", velocity)
+#		$AnimationTree.set("parameters/Walk/blend_position", velocity)
+#####
+
+####WALK
+	player.velocity = Vector2()
+	
+	if Input.is_action_pressed("move-right"):
+		Global.player_direction = "0"
+		player.velocity.x += 1
+		if self.getPlayer.get_node("Footsteps").playing == false:
+			self.getPlayer.get_node("Footsteps").play()
+	if Input.is_action_pressed("move-left"):
+		Global.player_direction = "1"
+		player.velocity.x -= 1
+		if self.getPlayer.get_node("Footsteps").playing == false:
+			self.getPlayer.get_node("Footsteps").play()
+	if Input.is_action_pressed("move-down"):
+		Global.player_direction = "2"
+		player.velocity.y += 1
+		if self.getPlayer.get_node("Footsteps").playing == false:
+			self.getPlayer.get_node("Footsteps").play()
+	if Input.is_action_pressed("move-up"):
+		Global.player_direction = "3"
+		player.velocity.y -= 1
+		if self.getPlayer.get_node("Footsteps").playing == false:
+			self.getPlayer.get_node("Footsteps").play()
+		#if $Footsteps.playing == false:
+			#$Footsteps.play()
+	player.velocity = player.velocity.normalized() * player.speed
+	player.velocity = player.move_and_slide(player.velocity)
+####RUN
+player.velocity = Vector2()
+	player.speed = Global.player_speed
+	
+	if Input.is_action_pressed("sprint"):
+		return player.STATES.RUN
+		#Global.player_isRunning = true 
+		player.speed = 300
+		if Input.is_action_pressed("move-right"):
+			Global.player_direction = "0"
+			player.velocity.x += 1
+			if self.getPlayer.get_node("Footsteps").playing == false:
+				self.getPlayer.get_node("Footsteps").play()
+		if Input.is_action_pressed("move-left"):
+			Global.player_direction = "1"
+			player.velocity.x -= 1
+			if self.getPlayer.get_node("Footsteps").playing == false:
+				self.getPlayer.get_node("Footsteps").play()
+		if Input.is_action_pressed("move-down"):
+			Global.player_direction = "2"
+			player.velocity.y += 1
+			if self.getPlayer.get_node("Footsteps").playing == false:
+				self.getPlayer.get_node("Footsteps").play()
+		if Input.is_action_pressed("move-up"):
+			Global.player_direction = "3"
+			player.velocity.y -= 1
+			if self.getPlayer.get_node("Footsteps").playing == false:
+				self.getPlayer.get_node("Footsteps").play()
+			#if $Footsteps.playing == false:
+				#$Footsteps.play()
+	
+			player.velocity = player.velocity.normalized() * player.speed
+			player.velocity = player.move_and_slide(player.velocity)
+	else:
+		player.speed = 200
+
+
+####SHOOT
+func fire():
+	var player = playerPath.instance()
+	var bullet_instance = bulletPath.instance()
+	if Global.player_direction == "0":
+		bullet_speed = 500
+		print('FIRE!')
+		print(Global.player_direction)
+		isShooting = true 
+		
+		#bullet_instance.position = $Muzzle.get_global_position()
+		#bullet_instance.rotation_degrees = rotation_degrees
+		#look_at(get_global_mouse_position())
+		#$M4A1Sprite.flip_h = false
+		#$M4A1Sprite.flip_v = false
+		#bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
+		#get_tree().get_root().add_child(bullet_instance)
+		
+	if Global.player_direction == "1":
+		bullet_speed = 500
+		print('FIRE!')
+		print(Global.player_direction)
+		isShooting = true 
+#		bullet_instance.position = $Muzzle.get_global_position()
+#		bullet_instance.rotation_degrees = rotation_degrees
+#		look_at(get_global_mouse_position())
+#		$M4A1Sprite.flip_h = true
+#		$M4A1Sprite.flip_v = true
+#		bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
+#		get_tree().get_root().add_child(bullet_instance)
+		
+	if Global.player_direction == "2":
+		bullet_speed = 500
+		print('FIRE!')
+		print(Global.player_direction)
+		isShooting = true 
+#		bullet_instance.position = $Muzzle.get_global_position()
+#		bullet_instance.rotation_degrees = rotation_degrees + (270 / PI)
+#		look_at(get_global_mouse_position())
+#		bullet_instance.apply_impulse(Vector2(), Vector2(0, bullet_speed).rotated(rotation))
+#		get_tree().get_root().add_child(bullet_instance)
+		
+	if Global.player_direction == "3":
+		bullet_speed = -500
+		print('FIRE!')
+		print(Global.player_direction)
+		isShooting = true 
+#		bullet_instance.position = $Muzzle.get_global_position() + Vector2(0,0)
+#		bullet_instance.rotation_degrees = rotation_degrees + (-270 / PI)
+#		look_at(get_global_mouse_position())
+#		bullet_instance.apply_impulse(Vector2(), Vector2(0, bullet_speed).rotated(rotation))
+#		get_tree().get_root().add_child(bullet_instance)
+func _ready():
+	pass # Replace with function body.

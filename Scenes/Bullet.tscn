@@ -3,7 +3,6 @@
 [ext_resource path="res://Assets/Weapons/Guns/bullet_m4a1.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Bullet.gd" type="Script" id=2]
 
-
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 2.99999
 height = 6.0

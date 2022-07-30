@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/NPCs/TacticalIdle.png" type="Texture" id=1]
 [ext_resource path="res://Assets/NPCs/TacticalResponseArmoredSuitGasMask.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/TacticalResponseGasMaskIdle.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/TacticalResponseGasMaskIdle.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Enemies/Icons/TacticalResponseTeam_CBRN_icon.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=8]

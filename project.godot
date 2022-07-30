@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player.gd"
 }, {
+"base": "StateMachine",
+"class": "RunState",
+"language": "GDScript",
+"path": "res://Scripts/Run.gd"
+}, {
 "base": "Node2D",
 "class": "StateMachine",
 "language": "GDScript",
@@ -43,6 +48,11 @@ _global_script_classes=[ {
 "class": "Tool",
 "language": "GDScript",
 "path": "res://Scripts/MiningDrill.gd"
+}, {
+"base": "StateMachine",
+"class": "WalkState",
+"language": "GDScript",
+"path": "res://Scripts/Walk.gd"
 }, {
 "base": "Node2D",
 "class": "Weapon",
@@ -59,9 +69,11 @@ _global_script_class_icons={
 "Drill": "res://Assets/Tools/drill1.png",
 "Pedestrians": "",
 "Player": "",
+"RunState": "",
 "StateMachine": "",
 "TacticalResponsePatrol": "",
 "Tool": "",
+"WalkState": "",
 "Weapon": "",
 "playerStates": ""
 }

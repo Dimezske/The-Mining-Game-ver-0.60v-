@@ -45,38 +45,14 @@ func _physics_process(_delta):
 func _get_input():
 	velocity = Vector2()
 	speed = Global.player_speed
-	#states = $StateMachine/Idle
+#states = $StateMachine/Idle
 	if Input.is_action_pressed("sprint"):
 		#states = $StateMachine/Run
 		Global.player_isRunning = true 
 		speed = 300
+		pass
 	else:
 		speed = 200
-#
-#	if Input.is_action_pressed("move-right"):
-#		Global.player_direction = "0"
-#		velocity.x += 1
-#		if $Footsteps.playing == false:
-#			$Footsteps.play()
-#	if Input.is_action_pressed("move-left"):
-#		Global.player_direction = "1"
-#		velocity.x -= 1
-#		if $Footsteps.playing == false:
-#			$Footsteps.play()
-#	if Input.is_action_pressed("move-down"):
-#		Global.player_direction = "2"
-#		velocity.y += 1
-#		if $Footsteps.playing == false:
-#			$Footsteps.play()
-#	if Input.is_action_pressed("move-up"):
-#		Global.player_direction = "3"
-#		velocity.y -= 1
-#		if $Footsteps.playing == false:
-#			$Footsteps.play()
-#
-#	velocity = velocity.normalized() * speed
-#	velocity = move_and_slide(velocity)
-
 	if Input.is_action_pressed("move-right"):
 		Global.player_direction = "0"
 		facing = Vector2(1,0)
@@ -101,10 +77,9 @@ func _get_input():
 		velocity.y -= 1
 		if $Footsteps.playing == false:
 			$Footsteps.play()
-			
+
 	velocity = velocity.normalized() * speed
 	velocity = move_and_slide(velocity)
-	
 	# not sure what these are for
 	for child in self.get_children():
 		if child.is_in_group("Position2D/Tools"):
@@ -112,7 +87,6 @@ func _get_input():
 	for child in self.get_children():
 		if child.is_in_group("Position2D/Weapons"):
 			child.animate(velocity)
-			
 	#Player Animations for Idle and Walk
 #	if velocity == Vector2.ZERO:
 #		$AnimationTree.get("parameters/playback").travel("Idle")
@@ -120,7 +94,6 @@ func _get_input():
 #		$AnimationTree.get("parameters/playback").travel("Walk")
 #		$AnimationTree.set("parameters/Idle/blend_position", velocity)
 #		$AnimationTree.set("parameters/Walk/blend_position", velocity)
-
 	if velocity == Vector2.ZERO:
 		$AnimationTree.get("parameters/playback").travel("Idle")
 	else:
@@ -131,7 +104,6 @@ func _get_input():
 	for weapons in $Position2D/Weapons.get_children(): # Iterate over all weapons
 		if 'parent_velocity' in weapons: # Does this "weapon" want to receive the player's velocity?
 			weapons.parent_velocity = velocity
-
 
 func _input(event):
 	if event.is_action_pressed("interact"):

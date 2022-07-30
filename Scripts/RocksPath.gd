@@ -8,7 +8,8 @@ enum {
 	EXIT
 }
 onready var mineRocks = $PathFollow2D/MineRocks
-var copper_mineral = preload("res://CopperMinerals.tscn")
+#var copper_mineral = preload("res://CopperMinerals.tscn")
+const copper_mineral = preload("res://Scenes/CopperMinerals.tscn")
 var timer_counter = 0
 var time_to_grind = 4
 export var SPEED = 100

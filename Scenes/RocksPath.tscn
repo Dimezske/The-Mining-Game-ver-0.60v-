@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/RocksPath.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/RocksPath.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MineRocks.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Items/rocks1.png" type="Texture" id=3]
 

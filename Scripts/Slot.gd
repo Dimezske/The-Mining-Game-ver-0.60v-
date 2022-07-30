@@ -9,7 +9,6 @@ var default_style: StyleBoxTexture = null
 var empty_style: StyleBoxTexture = null
 var selected_style: StyleBoxTexture = null
 
-#var ItemClass = preload("res://Item.tscn")
 var ItemClass = preload("res://Scenes/Item.tscn")
 var item = null
 var slot_index
