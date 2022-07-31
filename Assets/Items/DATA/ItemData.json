@@ -67,6 +67,11 @@
         "StackSize": 1,
         "Description": "Some dirty boots!!"
       },
+      "GreenHikingBackpack": {
+        "ItemCatagory": "Backpack",
+        "StackSize": 2,
+        "Description": " Large green Hiking Backpack"
+      },
       "CopperMinerals": {
         "ItemCatagory":	"Resource",
 	"StackSize": 1000,

@@ -1,8 +1,8 @@
 extends StateMachine
 
 
-onready var playerPath = load("res://Player.tscn")
-onready var bulletPath = load("res://Bullet.tscn")
+onready var playerPath = load("res://Scenes/Player.tscn")
+onready var bulletPath = load("res://Scenes/Bullet.tscn")
 
 export var bullet_speed: int
 export var isShooting: bool

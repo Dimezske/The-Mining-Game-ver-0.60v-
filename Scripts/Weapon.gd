@@ -1,9 +1,9 @@
 extends Node2D
 class_name Weapon
-onready var playerPath = preload("res://Player.tscn")
+onready var playerPath = preload("res://Scenes/Player.tscn")
 onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 onready var hitbox: Area2D = get_node("Node2D/Sprite/Hitbox")
-const M4A1_bulletPath = preload("res://Bullet.tscn")
+const M4A1_bulletPath = preload("res://Scenes/Bullet.tscn")
 # true/false  on the ground
 export(bool) var on_floor: bool = true
 
