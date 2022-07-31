@@ -15,12 +15,12 @@
 [ext_resource path="res://Assets/Players/new_heads.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Players/new_arms.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Players/new_legs.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Players/new_body_grey.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Players/new_shorts_grey.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Players/new_arms_grey.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Players/new_long-pants_white.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Players/new_shoes_white.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Players/new_arms_white.png" type="Texture" id=18]
 [ext_resource path="res://Scripts/PickupZone.gd" type="Script" id=19]
-[ext_resource path="res://Assets/Players/new_shoes_grey.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Players/new_long-pants_grey.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Players/new_shorts_white.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Players/new_body_white.png" type="Texture" id=21]
 
 [sub_resource type="AtlasTexture" id=61]
 flags = 4
@@ -2555,7 +2555,7 @@ hframes = 12
 
 [node name="Shirt" type="Sprite" parent="."]
 position = Vector2( 1, -38 )
-texture = ExtResource( 16 )
+texture = ExtResource( 21 )
 hframes = 12
 
 [node name="Arms" type="Sprite" parent="."]
@@ -2577,26 +2577,24 @@ hframes = 12
 
 [node name="Shorts" type="Sprite" parent="."]
 position = Vector2( -3, -12 )
-texture = ExtResource( 17 )
+texture = ExtResource( 20 )
 hframes = 12
 
 [node name="LongPants" type="Sprite" parent="."]
 position = Vector2( -3, -12 )
-texture = ExtResource( 21 )
+texture = ExtResource( 16 )
 hframes = 12
 
 [node name="Shoes" type="Sprite" parent="."]
 position = Vector2( -3, -11 )
-texture = ExtResource( 20 )
+texture = ExtResource( 17 )
 hframes = 12
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -1, -15 )
 shape = SubResource( 1 )
 
 [node name="Position2D" type="Position2D" parent="."]
-visible = false
 position = Vector2( 0, -16 )
 
 [node name="Tools" parent="Position2D" groups=["Tools"] instance=ExtResource( 3 )]
@@ -2604,7 +2602,6 @@ position = Vector2( 0, -16 )
 [node name="Weapons" type="Node2D" parent="Position2D" groups=["Weapons"]]
 
 [node name="PickupZone" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource( 19 )
@@ -2614,7 +2611,6 @@ position = Vector2( 0, -16 )
 shape = SubResource( 168 )
 
 [node name="DropZone" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropZone"]
 position = Vector2( 0.5, -16 )

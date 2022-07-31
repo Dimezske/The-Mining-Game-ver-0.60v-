@@ -67,6 +67,11 @@
         "StackSize": 1,
         "Description": "Some dirty boots!!"
       },
+      "lime-shirt":{
+        "ItemCatagory": "Shirts",
+        "StackSize": 20,
+        "Description": "a bright lime green shirt good quality!!"
+      },
       "GreenHikingBackpack": {
         "ItemCatagory": "Backpack",
         "StackSize": 2,
