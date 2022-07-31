@@ -667,11 +667,11 @@ position = Vector2( 545, -551 )
 [node name="Startmine-to-OutsideWorld_Entrance2" parent="World/YSort/Portals" instance=ExtResource( 27 )]
 position = Vector2( 249, -552 )
 
-[node name="Backpack1" parent="World/YSort" instance=ExtResource( 55 )]
-position = Vector2( -252, 331 )
-
 [node name="LimeShirt" parent="World/YSort" instance=ExtResource( 56 )]
 position = Vector2( -222, 214 )
+
+[node name="Backpack1" parent="World/YSort" instance=ExtResource( 55 )]
+position = Vector2( -177, 180 )
 
 [node name="SystemDiagnosis" type="CanvasLayer" parent="World"]
 
