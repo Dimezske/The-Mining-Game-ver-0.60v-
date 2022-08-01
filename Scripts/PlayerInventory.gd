@@ -18,6 +18,10 @@ var hotbar = {
 #	0: ["M4", 1], 
 #	1: ["M4", 1]
 }
+var equips = {
+#	0: ["M4", 1], 
+#	1: ["M4", 1]
+}
 var active_item_slot = 0
 
 func add_item(item_name, item_quantity):

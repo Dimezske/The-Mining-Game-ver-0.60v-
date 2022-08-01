@@ -4,8 +4,8 @@ extends Node2D
 #const SlotClass = preload("res://Slot.gd")
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var inventory_slots = $GridContainer
-
-
+onready var equip_slots = $EquipSlots
+var mouse_over_slot = false
 func _ready():
 #	var slots = inventory_slots.get_children()
 #	for i in range(slots.size()):
@@ -21,17 +21,40 @@ func _ready():
 		slots[i].slot_index = i
 		slots[i].slot_type = SlotClass.SlotType.INVENTORY
 			
-#	for i in range(equip_slots.size()):
-#		equip_slots[i].connect("gui_input", self, "slot_gui_input", [equip_slots[i]])
+
+#	SHIRTS,
+#	SHORTS,
+#	PANTS,
+#	SHOES,
+#	NECKLACES,
+#	BACKPACKS,
+#	LEFTRINGS,
+#	RIGHTRINGS,
+#	VESTS,
+#	GRENADES,
+#	LEFTUTILITIES,
+#	RIGHTUTILITIES,
+	for i in range(equip_slots.size()):
+		equip_slots[i].connect("gui_input", self, "slot_gui_input", [equip_slots[i]])
 #		equip_slots[i].connect("mouse_entered", self, "slot_mouse_entered")
 #		equip_slots[i].connect("mouse_exited", self, "slot_mouse_exited")
-#		equip_slots[i].slot_index = i
-#	equip_slots[0].slotType = SlotClass.SlotType.SHIRT
-#	equip_slots[1].slotType = SlotClass.SlotType.PANTS
-#	equip_slots[2].slotType = SlotClass.SlotType.SHOES
+		equip_slots[i].slot_index = i
+	equip_slots[0].slotType = SlotClass.SlotType.SHIRTS
+	equip_slots[1].slotType = SlotClass.SlotType.NECKLACES
+	equip_slots[2].slotType = SlotClass.SlotType.VESTS
+	equip_slots[3].slotType = SlotClass.SlotType.SHORTS
+	equip_slots[4].slotType = SlotClass.SlotType.BACKPACKS
+	equip_slots[5].slotType = SlotClass.SlotType.GRENADES
+	equip_slots[6].slotType = SlotClass.SlotType.PANTS
+	equip_slots[7].slotType = SlotClass.SlotType.LEFTRINGS
+	equip_slots[8].slotType = SlotClass.SlotType.LEFTUTILITIES
+	equip_slots[9].slotType = SlotClass.SlotType.SHOES
+	equip_slots[10].slotType = SlotClass.SlotType.RIGHTRINGS
+	equip_slots[11].slotType = SlotClass.SlotType.RIGHTUTILITIES
+	
 		
 	initialize_inventory()
-#	initialize_equips()
+	initialize_equips()
 
 func initialize_inventory():
 	var slots = inventory_slots.get_children()
@@ -39,10 +62,10 @@ func initialize_inventory():
 		if PlayerInventory.inventory.has(i):
 			slots[i].initialize_item(PlayerInventory.inventory[i][0], PlayerInventory.inventory[i][1])
 
-#func initialize_equips():
-#	for i in range(equip_slots.size()):
-#		if PlayerInventory.equips.has(i):
-#			equip_slots[i].initialize_item(PlayerInventory.equips[i][0], PlayerInventory.equips[i][1])
+func initialize_equips():
+	for i in range(equip_slots.size()):
+		if PlayerInventory.equips.has(i):
+			equip_slots[i].initialize_item(PlayerInventory.equips[i][0], PlayerInventory.equips[i][1])
 
 func slot_mouse_entered():
 	find_parent("UserInterface").mouse_over_slot = true
@@ -148,3 +171,16 @@ func left_click_not_holding(slot: SlotClass):
 	find_parent("UserInterface").holding_item = slot.item
 	slot.pickFromSlot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
+
+
+func _on_TextureButton_pressed():
+	$EquipSlots.visible = !$EquipSlots.visible
+	if !$EquipSlots.visible:
+		mouse_over_slot = false
+	$ClothingRect.visible = !$ClothingRect.visible
+	if !$ClothingRect.visible:
+		mouse_over_slot = false
+	$ClothingText.visible = !$ClothingText.visible
+	if !$ClothingText.visible:
+		mouse_over_slot = false
+	#$Inventory.initialize_inventory()

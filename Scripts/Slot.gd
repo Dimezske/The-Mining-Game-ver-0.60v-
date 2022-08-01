@@ -17,6 +17,18 @@ var slot_type
 enum SlotType {
 	HOTBAR = 0,
 	INVENTORY,
+	SHIRTS,
+	SHORTS,
+	PANTS,
+	SHOES,
+	NECKLACES,
+	BACKPACKS,
+	LEFTRINGS,
+	RIGHTRINGS,
+	VESTS,
+	GRENADES,
+	LEFTUTILITIES,
+	RIGHTUTILITIES,
 }
 func _ready():
 	default_style = StyleBoxTexture.new()
