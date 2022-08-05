@@ -52,10 +52,17 @@ func refresh_style():
 	else:
 		set('custom_styles/panel', default_style)
 		
+#func pickFromSlot():
+#	remove_child(item)
+#	var inventoryNode = find_parent("UserInterface")
+#	inventoryNode.add_child(item)
+#	item = null
+#	refresh_style()
 func pickFromSlot():
 	remove_child(item)
 	var inventoryNode = find_parent("UserInterface")
 	inventoryNode.add_child(item)
+	item.z_index = 3
 	item = null
 	refresh_style()
 	
@@ -65,7 +72,15 @@ func putIntoSlot(new_item):
 	var inventoryNode = find_parent("UserInterface")
 	inventoryNode.remove_child(item)
 	add_child(item)
+	item.z_index = 1
 	refresh_style()
+#func putIntoSlot(new_item):
+#	item = new_item
+#	item.position = Vector2(0, 0)
+#	var inventoryNode = find_parent("UserInterface")
+#	inventoryNode.remove_child(item)
+#	add_child(item)
+#	refresh_style()
 	
 func initialize_item(item_name, item_quantity):
 	if item == null:

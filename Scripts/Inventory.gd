@@ -4,7 +4,7 @@ extends Node2D
 #const SlotClass = preload("res://Slot.gd")
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var inventory_slots = $GridContainer
-onready var equip_slots = $EquipSlots
+onready var equip_slots = $ClothingContainer/EquipSlots.get_children()
 var mouse_over_slot = false
 func _ready():
 #	var slots = inventory_slots.get_children()
@@ -36,23 +36,22 @@ func _ready():
 #	RIGHTUTILITIES,
 	for i in range(equip_slots.size()):
 		equip_slots[i].connect("gui_input", self, "slot_gui_input", [equip_slots[i]])
-#		equip_slots[i].connect("mouse_entered", self, "slot_mouse_entered")
-#		equip_slots[i].connect("mouse_exited", self, "slot_mouse_exited")
+		equip_slots[i].connect("mouse_entered", self, "slot_mouse_entered")
+		equip_slots[i].connect("mouse_exited", self, "slot_mouse_exited")
 		equip_slots[i].slot_index = i
-	equip_slots[0].slotType = SlotClass.SlotType.SHIRTS
-	equip_slots[1].slotType = SlotClass.SlotType.NECKLACES
-	equip_slots[2].slotType = SlotClass.SlotType.VESTS
-	equip_slots[3].slotType = SlotClass.SlotType.SHORTS
-	equip_slots[4].slotType = SlotClass.SlotType.BACKPACKS
-	equip_slots[5].slotType = SlotClass.SlotType.GRENADES
-	equip_slots[6].slotType = SlotClass.SlotType.PANTS
-	equip_slots[7].slotType = SlotClass.SlotType.LEFTRINGS
-	equip_slots[8].slotType = SlotClass.SlotType.LEFTUTILITIES
-	equip_slots[9].slotType = SlotClass.SlotType.SHOES
-	equip_slots[10].slotType = SlotClass.SlotType.RIGHTRINGS
-	equip_slots[11].slotType = SlotClass.SlotType.RIGHTUTILITIES
+	equip_slots[0].slot_type = SlotClass.SlotType.SHIRTS
+	equip_slots[1].slot_type = SlotClass.SlotType.NECKLACES
+	equip_slots[2].slot_type = SlotClass.SlotType.VESTS
+	equip_slots[3].slot_type = SlotClass.SlotType.SHORTS
+	equip_slots[4].slot_type = SlotClass.SlotType.BACKPACKS
+	equip_slots[5].slot_type = SlotClass.SlotType.GRENADES
+	equip_slots[6].slot_type = SlotClass.SlotType.PANTS
+	equip_slots[7].slot_type = SlotClass.SlotType.LEFTRINGS
+	equip_slots[8].slot_type = SlotClass.SlotType.LEFTUTILITIES
+	equip_slots[9].slot_type = SlotClass.SlotType.SHOES
+	equip_slots[10].slot_type = SlotClass.SlotType.RIGHTRINGS
+	equip_slots[11].slot_type = SlotClass.SlotType.RIGHTUTILITIES
 	
-		
 	initialize_inventory()
 	initialize_equips()
 
@@ -128,12 +127,32 @@ func able_to_put_into_slot(slot: SlotClass):
 		return true
 	var holding_item_category = JsonData.item_data[holding_item.item_name]["ItemCatagory"]
 	
-#	if slot.slotType == SlotClass.SlotType.SHIRT:
-#		return holding_item_category == "Shirt"
-#	elif slot.slotType == SlotClass.SlotType.PANTS:
-#		return holding_item_category == "Pants"
-#	elif slot.slotType == SlotClass.SlotType.SHOES:
-#		return holding_item_category == "Shoes"
+	if slot.slot_type == SlotClass.SlotType.SHIRTS:
+		return holding_item_category == "Shirts"
+	elif slot.slot_type == SlotClass.SlotType.NECKLACES:
+		return holding_item_category == "Necklaces"
+	elif slot.slot_type == SlotClass.SlotType.VESTS:
+		return holding_item_category == "Vests"
+	elif slot.slot_type == SlotClass.SlotType.SHORTS:
+		return holding_item_category == "Shorts"
+	elif slot.slot_type == SlotClass.SlotType.BACKPACKS:
+		return holding_item_category == "Backpacks"
+	elif slot.slot_type == SlotClass.SlotType.SHORTS:
+		return holding_item_category == "Shorts"
+	elif slot.slot_type == SlotClass.SlotType.GRENADES:
+		return holding_item_category == "Grenades"
+	elif slot.slot_type == SlotClass.SlotType.PANTS:
+		return holding_item_category == "Pants"
+	elif slot.slot_type == SlotClass.SlotType.LEFTRINGS:
+		return holding_item_category == "LeftRings"
+	elif slot.slot_type == SlotClass.SlotType.LEFTUTILITIES:
+		return holding_item_category == "LeftUtilities"
+	elif slot.slot_type == SlotClass.SlotType.SHOES:
+		return holding_item_category == "Shoes"
+	elif slot.slot_type == SlotClass.SlotType.RIGHTRINGS:
+		return holding_item_category == "RightRings"
+	elif slot.slot_type == SlotClass.SlotType.RIGHTUTILITIES:
+		return holding_item_category == "RightUtilities"
 	return true
 
 func left_click_empty_slot(slot: SlotClass):
@@ -172,15 +191,14 @@ func left_click_not_holding(slot: SlotClass):
 	slot.pickFromSlot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 
-
 func _on_TextureButton_pressed():
-	$EquipSlots.visible = !$EquipSlots.visible
-	if !$EquipSlots.visible:
+	$ClothingContainer/EquipSlots.visible = !$ClothingContainer/EquipSlots.visible
+	if !$ClothingContainer/EquipSlots.visible:
 		mouse_over_slot = false
-	$ClothingRect.visible = !$ClothingRect.visible
-	if !$ClothingRect.visible:
+	$ClothingContainer/ClothingRect.visible = !$ClothingContainer/ClothingRect.visible
+	if !$ClothingContainer/ClothingRect.visible:
 		mouse_over_slot = false
-	$ClothingText.visible = !$ClothingText.visible
-	if !$ClothingText.visible:
+	$ClothingContainer/ClothingText.visible = !$ClothingContainer/ClothingText.visible
+	if !$ClothingContainer/ClothingText.visible:
 		mouse_over_slot = false
 	#$Inventory.initialize_inventory()

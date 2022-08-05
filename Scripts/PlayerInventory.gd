@@ -60,8 +60,8 @@ func remove_item(slot: SlotClass):
 			hotbar.erase(slot.slot_index)
 		SlotClass.SlotType.INVENTORY:
 			inventory.erase(slot.slot_index)
-#		_:
-#			equips.erase(slot.slot_index)
+		_:
+			equips.erase(slot.slot_index)
 
 func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
 	match slot.slot_type: 
@@ -69,8 +69,8 @@ func add_item_to_empty_slot(item: ItemClass, slot: SlotClass):
 			hotbar[slot.slot_index] = [item.item_name, item.item_quantity]
 		SlotClass.SlotType.INVENTORY:
 			inventory[slot.slot_index] = [item.item_name, item.item_quantity]
-#		_:
-#			equips[slot.slot_index] = [item.item_name, item.item_quantity]
+		_:
+			equips[slot.slot_index] = [item.item_name, item.item_quantity]
 
 
 func add_item_quantity(slot: SlotClass, quantity_to_add: int):
@@ -79,8 +79,8 @@ func add_item_quantity(slot: SlotClass, quantity_to_add: int):
 				hotbar[slot.slot_index][1] += quantity_to_add
 			SlotClass.SlotType.INVENTORY:
 				inventory[slot.slot_index][1] += quantity_to_add
-	#		_:
-	#			equips[slot.slot_index][1] += quantity_to_add
+			_:
+				equips[slot.slot_index][1] += quantity_to_add
 
 
 func active_item_scroll_up() -> void:
