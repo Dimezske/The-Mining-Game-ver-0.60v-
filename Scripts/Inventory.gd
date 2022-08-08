@@ -3,23 +3,17 @@ extends Node2D
 signal slot_change(slotNumber, ItemAdded)
 
 #const SlotClass = preload("res://Slot.gd")
-const playerPath = preload("res://Scenes/Player.tscn")
+
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var inventory_slots = $GridContainer
 onready var equip_slots = $ClothingContainer/EquipSlots.get_children()
-onready var player = get_parent()
-onready var clothing = get_node()
 var mouse_over_slot = false
+var clothing = {
+'lime-shirt' : load("res://Assets/Items/Icons/lime-shirt.png"),
+}
 
-#var clothing = {
-#'lime-shirt' : load("res://Assets/Items/Icons/lime-shirt.png"),
-#}
-var clothes = ['red-shirt', 'green-shirt', 'blue-shirt']
-var player_clothes
 
 func _ready():
-	player = playerPath.instance()
-	player = Global.player_node
 	if Global.player_node:
 		pass
 	change_clothing()
