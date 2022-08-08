@@ -24,8 +24,8 @@ var isHoldingWeapon : bool
 var isLazer : bool
 
 func _ready():
+	Global.player_node = self
 	#self.global_position = Global.player_initial_map_position
-
 	#states.init(self)
 	pass
 

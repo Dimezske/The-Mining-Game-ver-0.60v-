@@ -30,6 +30,7 @@ enum SlotType {
 	LEFTUTILITIES,
 	RIGHTUTILITIES,
 }
+
 func _ready():
 	default_style = StyleBoxTexture.new()
 	empty_style = StyleBoxTexture.new()

@@ -1,8 +1,12 @@
 extends Node2D
 
+onready var Red = Color(255,0,0,255)
+onready var Green = Color(0,255,0,255)
+onready var Blue = Color(0,0,255,255)
+
+var player_node 
 var player_initial_map_position = Vector2(200,200)
 #var getlevel_start = preload("res://Scenes/Startmine.tscn")
-
 var player_direction = ["LEFT","RIGHT","UP","DOWN"]
 var player_velocity = Vector2()
 var player_speed
@@ -26,5 +30,4 @@ func _ready():
 #	level_path.get_tree().current_scene.name == "res://Scenes/OutsideWorld.tscn"
 	#if get_tree().current_scene.filename == "res://Scenes/OutsideWorld.tscn":
 		#player_initial_map_position = Vector2(4000,1000)
-
 	pass
