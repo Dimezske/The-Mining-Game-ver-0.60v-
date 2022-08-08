@@ -15,6 +15,7 @@ onready var items = preload("res://Scenes/Item.tscn")
 onready var animated_sprite = $AnimatedSprite
 onready var velocity = Global.player_velocity
 onready var states = $StateMachine
+onready var shirt = $Shirt
 var facing
 export (int) var speed = 200
 var dir = [0,1,2,3]
@@ -40,7 +41,11 @@ func _physics_process(_delta):
 			if 'fire' in weapons: # Does this "weapon" essentially have a fire button?
 				weapons.fire() # Fire the weapon
 				print('fire')
-	
+
+func getClothing(clothing_name):
+	match clothing_name:
+		"shirt": return shirt
+
 # Player Movements
 func _get_input():
 	velocity = Vector2()
