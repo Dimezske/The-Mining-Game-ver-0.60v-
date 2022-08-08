@@ -9,10 +9,13 @@ onready var inventory_slots = $GridContainer
 onready var equip_slots = $ClothingContainer/EquipSlots.get_children()
 onready var clothing_shirt = Global.player_node.shirt
 var mouse_over_slot = false
+
 var clothing_array = {
 'lime-shirt' : load("res://Assets/Items/Icons/lime-shirt.png"),
 }
-
+var backpacks = {
+	"GreenHikingBackpack": load("res://Assets/Items/backpack1.png")
+}
 
 func _ready():
 	if Global.player_node:
@@ -64,7 +67,8 @@ func _ready():
 	
 	initialize_inventory()
 	initialize_equips()
-	self.connect("slot_change",self, "_on_shirt_change") 
+	self.connect("slot_change",self, "_on_shirt_change")
+	self.connect("slot_change",self, "_on_change_backpack") 
 	#_on_change_clothing()
 func initialize_inventory():
 	var slots = inventory_slots.get_children()
@@ -206,8 +210,20 @@ func _on_shirt_change(slotNumber, ItemAdded):
 	if clothing_array.has("lime-shirt") == ItemAdded:
 		slotNumber = equip_slots[0].slot_type
 		clothing_shirt.modulate = Color(0,255,0,255)
+func _on_set_backpack(slotNumber, ItemAdded):
+	if !ItemAdded:
+		Global.player_node.backpack.texture = ""
+		return
+	Global.player_node.backpack.texture = backpacks["GreenHikingBackpack"]
+	
+#func _on_set_backpack(slotNumber, ItemAdded):
+#	if backpacks.has("GreenHikingBackpack") == ItemAdded:
+#		slotNumber = equip_slots[4].slot_type
+
 func _on_change_clothing():
 	emit_signal("slot_change", $ClothingContainer/EquipSlots/ShirtSlot,true)
+func _on_change_backpack():
+	emit_signal("slot_change", $ClothingContainer/EquipSlots/BackpacksSlot, true)
 func _on_TextureButton_pressed():
 	$ClothingContainer/EquipSlots.visible = !$ClothingContainer/EquipSlots.visible
 	if !$ClothingContainer/EquipSlots.visible:

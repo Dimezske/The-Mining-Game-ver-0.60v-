@@ -3830,6 +3830,9 @@ rotation = -1.5708
 texture = ExtResource( 17 )
 hframes = 12
 
+[node name="Backpack" type="Sprite" parent="."]
+position = Vector2( 10, -40 )
+
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( -1, -15 )

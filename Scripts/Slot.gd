@@ -44,14 +44,51 @@ func _ready():
 #		add_child(item)
 
 	refresh_style()
-		
 func refresh_style():
+	if slot_type == SlotType.SHIRTS:
+		if find_parent("Inventory").equip_slots[0].item:
+			find_parent("Inventory")._on_shirt_change(find_parent("Inventory").equip_slots[0].slot_type,true)
+		else:
+			find_parent("Inventory")._on_shirt_change(find_parent("Inventory").equip_slots[0].slot_type,false)
+	if slot_type == SlotType.BACKPACKS:
+		if find_parent("Inventory").equip_slots[4].item:
+			find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,true)
+		else:
+			find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,false)
 	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
 		set('custom_styles/panel', selected_style)
 	elif item == null:
 		set('custom_styles/panel', empty_style)
 	else:
 		set('custom_styles/panel', default_style)
+#func refresh_style():
+##	if slot_type == SlotType.SHIRTS:
+##		find_parent("Inventory")._on_shirt_change(equip_slots[0].slot_type,true)
+##	if slot_type == SlotType.BACKPACKS:
+##		find_parent("Inventory")._on_set_backpack(equip_slots[4].slot_type,true)
+#	if find_parent("Inventory").equip_slots[0].item:
+#		find_parent("Inventory")._on_shirt_change(find_parent("Inventory").equip_slots[0].slot_type,true)
+#	else:
+#		find_parent("Inventory")._on_shirt_change(find_parent("Inventory").equip_slots[0].slot_type,false)
+#
+#	if find_parent("Inventory").equip_slots[4].item:
+#		find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,true)
+#	else:
+#		find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,false)
+#
+#	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
+#		set('custom_styles/panel', selected_style)
+#	elif item == null:
+#		set('custom_styles/panel', empty_style)
+#	else:
+#		set('custom_styles/panel', default_style)
+#func refresh_style():
+#	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
+#		set('custom_styles/panel', selected_style)
+#	elif item == null:
+#		set('custom_styles/panel', empty_style)
+#	else:
+#		set('custom_styles/panel', default_style)
 		
 #func pickFromSlot():
 #	remove_child(item)

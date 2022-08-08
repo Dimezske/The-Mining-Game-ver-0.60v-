@@ -16,6 +16,8 @@ onready var animated_sprite = $AnimatedSprite
 onready var velocity = Global.player_velocity
 onready var states = $StateMachine
 onready var shirt = $Shirt
+onready var backpack = $Backpack
+
 var facing
 export (int) var speed = 200
 var dir = [0,1,2,3]
