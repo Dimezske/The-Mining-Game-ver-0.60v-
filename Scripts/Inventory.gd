@@ -7,7 +7,7 @@ signal slot_change(slotNumber, ItemAdded)
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var inventory_slots = $GridContainer
 onready var equip_slots = $ClothingContainer/EquipSlots.get_children()
-onready var clothing = Global.player_node.shirt
+onready var clothing_shirt = Global.player_node.shirt
 var mouse_over_slot = false
 var clothing_array = {
 'lime-shirt' : load("res://Assets/Items/Icons/lime-shirt.png"),
@@ -65,7 +65,7 @@ func _ready():
 	initialize_inventory()
 	initialize_equips()
 	self.connect("slot_change",self, "_on_shirt_change") 
-	_on_change_clothing()
+	#_on_change_clothing()
 func initialize_inventory():
 	var slots = inventory_slots.get_children()
 	for i in range(slots.size()):
@@ -203,10 +203,9 @@ func left_click_not_holding(slot: SlotClass):
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 #signal slot_change(slotNumber, ItemAdded)
 func _on_shirt_change(slotNumber, ItemAdded):
-	if clothing_array["lime-shirt"] == ItemAdded:
+	if clothing_array.has("lime-shirt") == ItemAdded:
 		slotNumber = equip_slots[0].slot_type
-		_on_change_clothing()
-		Global.player_node.get_node("%Shirt").self_modulate(Color(0,255,0,255))
+		clothing_shirt.modulate = Color(0,255,0,255)
 func _on_change_clothing():
 	emit_signal("slot_change", $ClothingContainer/EquipSlots/ShirtSlot,true)
 func _on_TextureButton_pressed():
