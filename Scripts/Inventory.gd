@@ -228,6 +228,7 @@ func _on_set_backpack(slotNumber, ItemAdded):
 #func _on_set_backpack(slotNumber, ItemAdded):
 #	if backpacks.has("GreenHikingBackpack") == ItemAdded:
 #		slotNumber = equip_slots[4].slot_type
+#-----------------MiningDrill-----------------------------------------
 
 func _on_change_clothing():
 	emit_signal("slot_change", $ClothingContainer/EquipSlots/ShirtSlot,true)
