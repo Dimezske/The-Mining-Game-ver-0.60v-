@@ -8,6 +8,7 @@ const SlotClass = preload("res://Scripts/Slot.gd")
 onready var inventory_slots = $GridContainer
 onready var equip_slots = $ClothingContainer/EquipSlots.get_children()
 onready var clothing_shirt = Global.player_node.shirt
+onready var clothing_shirt_sleeves = Global.player_node.shirtsleeves
 var mouse_over_slot = false
 
 var clothing_array = {
@@ -207,14 +208,22 @@ func left_click_not_holding(slot: SlotClass):
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 #signal slot_change(slotNumber, ItemAdded)
 func _on_shirt_change(slotNumber, ItemAdded):
+	if !ItemAdded:
+		clothing_shirt.visible = false
+		clothing_shirt_sleeves.visible = false
 	if clothing_array.has("lime-shirt") == ItemAdded:
+		clothing_shirt.visible = true
+		clothing_shirt_sleeves.visible = true
 		slotNumber = equip_slots[0].slot_type
 		clothing_shirt.modulate = Color(0,255,0,255)
 func _on_set_backpack(slotNumber, ItemAdded):
 	if !ItemAdded:
-		Global.player_node.backpack.texture = ""
+		Global.player_node.backpack.texture = null
+		Global.player_node.backpack.visible = false
 		return
+	Global.player_node.backpack.visible = true
 	Global.player_node.backpack.texture = backpacks["GreenHikingBackpack"]
+	
 	
 #func _on_set_backpack(slotNumber, ItemAdded):
 #	if backpacks.has("GreenHikingBackpack") == ItemAdded:

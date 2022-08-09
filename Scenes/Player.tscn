@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://Assets/Players/player.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Scripts/PickupZone.gd" type="Script" id=19]
 [ext_resource path="res://Assets/Players/new_shorts_white.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Players/new_body_white.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Items/backpack1.png" type="Texture" id=22]
 
 [sub_resource type="AtlasTexture" id=61]
 flags = 4
@@ -3831,7 +3832,11 @@ texture = ExtResource( 17 )
 hframes = 12
 
 [node name="Backpack" type="Sprite" parent="."]
-position = Vector2( 10, -40 )
+visible = false
+position = Vector2( 10, -45 )
+texture = ExtResource( 22 )
+region_enabled = true
+region_rect = Rect2( 0, 20, 50, 50 )
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 visible = false

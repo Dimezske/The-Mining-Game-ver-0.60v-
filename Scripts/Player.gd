@@ -16,6 +16,7 @@ onready var animated_sprite = $AnimatedSprite
 onready var velocity = Global.player_velocity
 onready var states = $StateMachine
 onready var shirt = $Shirt
+onready var shirtsleeves = $ShirtSleeves
 onready var backpack = $Backpack
 
 var facing
@@ -64,24 +65,36 @@ func _get_input():
 		Global.player_direction = "0"
 		facing = Vector2(1,0)
 		velocity.x += 1
+		backpack.region_rect = Rect2(50,20,50,50)
+		backpack.position = Vector2(-20,-45)
+		backpack.z_index = 0
 		if $Footsteps.playing == false:
 			$Footsteps.play()
 	if Input.is_action_pressed("move-left"):
 		Global.player_direction = "1"
 		facing = Vector2(-1,0)
 		velocity.x -= 1
+		backpack.region_rect = Rect2(150,20,50,50)
+		backpack.position = Vector2(18,-45)
+		backpack.z_index = 0
 		if $Footsteps.playing == false:
 			$Footsteps.play()
 	if Input.is_action_pressed("move-down"):
 		Global.player_direction = "2"
 		facing = Vector2(0,1)
 		velocity.y += 1
+		backpack.region_rect = Rect2(0,20,50,50)
+		backpack.position = Vector2(1,-45)
+		backpack.z_index = -1
 		if $Footsteps.playing == false:
 			$Footsteps.play()
 	if Input.is_action_pressed("move-up"):
 		Global.player_direction = "3"
 		facing = Vector2(0,-1)
 		velocity.y -= 1
+		backpack.region_rect = Rect2(200,20,50,50)
+		backpack.position = Vector2(1,-45)
+		backpack.z_index = 0
 		if $Footsteps.playing == false:
 			$Footsteps.play()
 
@@ -111,7 +124,6 @@ func _get_input():
 	for weapons in $Position2D/Weapons.get_children(): # Iterate over all weapons
 		if 'parent_velocity' in weapons: # Does this "weapon" want to receive the player's velocity?
 			weapons.parent_velocity = velocity
-
 func _input(event):
 	if event.is_action_pressed("interact"):
 		if $PickupZone.items_in_range.size() > 0:
