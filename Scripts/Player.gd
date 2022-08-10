@@ -18,6 +18,8 @@ onready var states = $StateMachine
 onready var shirt = $Shirt
 onready var shirtsleeves = $ShirtSleeves
 onready var backpack = $Backpack
+onready var tools = $Position2D/Tools
+onready var weapons = $Position2D/Weapons
 
 var facing
 export (int) var speed = 200

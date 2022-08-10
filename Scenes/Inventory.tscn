@@ -488,6 +488,7 @@ text = "Modifications"
 z_index = 1
 
 [node name="ClothingRect" type="TextureRect" parent="ClothingContainer"]
+visible = false
 margin_left = 117.0
 margin_top = 33.0
 margin_right = 617.0
@@ -495,6 +496,7 @@ margin_bottom = 533.0
 texture = ExtResource( 14 )
 
 [node name="ClothingText" type="RichTextLabel" parent="ClothingContainer"]
+visible = false
 self_modulate = Color( 1, 0.760784, 0, 1 )
 margin_left = 128.0
 margin_top = 52.0
@@ -505,6 +507,7 @@ theme = SubResource( 9 )
 text = "Clothing"
 
 [node name="EquipSlots" type="GridContainer" parent="ClothingContainer"]
+visible = false
 margin_left = 124.0
 margin_top = 83.0
 margin_right = 624.0

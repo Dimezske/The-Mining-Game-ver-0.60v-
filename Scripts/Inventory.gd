@@ -7,6 +7,7 @@ signal slot_change(slotNumber, ItemAdded)
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var inventory_slots = $GridContainer
 onready var equip_slots = $ClothingContainer/EquipSlots.get_children()
+onready  var usable_tools = Global.player_node.tools
 onready var clothing_shirt = Global.player_node.shirt
 onready var clothing_shirt_sleeves = Global.player_node.shirtsleeves
 var mouse_over_slot = false
@@ -216,6 +217,7 @@ func _on_shirt_change(slotNumber, ItemAdded):
 		clothing_shirt_sleeves.visible = true
 		slotNumber = equip_slots[0].slot_type
 		clothing_shirt.modulate = Color(0,255,0,255)
+		
 func _on_set_backpack(slotNumber, ItemAdded):
 	if !ItemAdded:
 		Global.player_node.backpack.texture = null

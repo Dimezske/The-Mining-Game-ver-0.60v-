@@ -1,12 +1,16 @@
 #Hotbar.gd
 extends Node2D
-
+signal hotbar_slot_change(slotNumber, ItemAdded)
 #const SlotClass = preload("res://Slot.gd")
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var hotbar_slots = $HotbarSlots
 onready var active_item_label = $ActiveItemLabel
 onready var slots = hotbar_slots.get_children()
+onready var usable_tools = Global.player_node.tools
 
+var mining_drills = {
+	"MiningDrill Starter": load("res://Assets/Tools/Starter_drill1.png")
+}
 func _ready():
 	#	for i in range(slots.size()):
 #		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
@@ -19,8 +23,22 @@ func _ready():
 		slots[i].connect("mouse_exited", self, "slot_mouse_exited")
 		slots[i].slot_type = SlotClass.SlotType.HOTBAR
 		slots[i].slot_index = i
+		
+#	for i in range(hotbar_slots.size()):
+#		PlayerInventory.connect("active_item_updated", slots[i], "refresh_style")
+#		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
+#		slots[i].connect("mouse_entered", self, "slot_mouse_entered")
+#		slots[i].connect("mouse_exited", self, "slot_mouse_exited")
+#		slots[i].slot_type = SlotClass.SlotType.HOTBAR
+#		slots[i].slot_index = i
+	slots[0].slot_type = SlotClass.SlotType.HOTBAR
+	slots[1].slot_type = SlotClass.SlotType.HOTBAR
+	slots[2].slot_type = SlotClass.SlotType.HOTBAR
+	slots[3].slot_type = SlotClass.SlotType.HOTBAR
+	slots[4].slot_type = SlotClass.SlotType.HOTBAR
 	initialize_hotbar()
 	update_active_item_label()
+	self.connect("hotbar_slot_change",self, "_on_set_mining_drill") 
 	
 func update_active_item_label():
 	if slots[PlayerInventory.active_item_slot].item != null:
@@ -105,3 +123,13 @@ func left_click_not_holding(slot: SlotClass):
 	slot.pickFromSlot()
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 
+func _on_set_mining_drill(slotNumber, ItemAdded):
+	if !ItemAdded:
+		Global.player_node.tools.texture = null
+		Global.player_node.tools.visible = false
+		return
+	Global.player_node.tools.visible = true
+	Global.player_node.tools = mining_drills["MiningDrill Starter"]
+	
+func _on_change_mining_drill():
+	emit_signal("hotbar_slot_change", $HotbarSlots/HotbarSlot1,true)
