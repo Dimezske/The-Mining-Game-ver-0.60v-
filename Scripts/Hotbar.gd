@@ -1,7 +1,6 @@
 #Hotbar.gd
 extends Node2D
 signal hotbar_slot_change(slotNumber, ItemAdded)
-#const SlotClass = preload("res://Slot.gd")
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var hotbar_slots = $HotbarSlots
 onready var active_item_label = $ActiveItemLabel
@@ -12,9 +11,6 @@ var mining_drills = {
 	"MiningDrill Starter": load("res://Assets/Tools/Starter_drill1.png")
 }
 func _ready():
-	#	for i in range(slots.size()):
-#		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
-#		slots[i].slot_index = i
 	PlayerInventory.connect("active_item_updated", self, "update_active_item_label")
 	for i in range(slots.size()):
 		PlayerInventory.connect("active_item_updated", slots[i], "refresh_style")
@@ -23,14 +19,6 @@ func _ready():
 		slots[i].connect("mouse_exited", self, "slot_mouse_exited")
 		slots[i].slot_type = SlotClass.SlotType.HOTBAR
 		slots[i].slot_index = i
-		
-#	for i in range(hotbar_slots.size()):
-#		PlayerInventory.connect("active_item_updated", slots[i], "refresh_style")
-#		slots[i].connect("gui_input", self, "slot_gui_input", [slots[i]])
-#		slots[i].connect("mouse_entered", self, "slot_mouse_entered")
-#		slots[i].connect("mouse_exited", self, "slot_mouse_exited")
-#		slots[i].slot_type = SlotClass.SlotType.HOTBAR
-#		slots[i].slot_index = i
 	slots[0].slot_type = SlotClass.SlotType.HOTBAR
 	slots[1].slot_type = SlotClass.SlotType.HOTBAR
 	slots[2].slot_type = SlotClass.SlotType.HOTBAR
@@ -56,8 +44,8 @@ func _input(event):
 		if event is InputEventMouseButton:
 				if event.button_index == BUTTON_LEFT && event.pressed:
 					if !find_parent("UserInterface").mouse_over_slot:
-						
 						drop_item()
+
 func slot_mouse_entered():
 	find_parent("UserInterface").mouse_over_slot = true
 
@@ -130,6 +118,8 @@ func _on_set_mining_drill(slotNumber, ItemAdded):
 		usable_tools.visible = true
 		slotNumber = slots[0].slot_type
 		Global.isHoldingTool = true
+		Global.hasMiningDrill = true
+		slotNumber = slots[0].slot_type
 	Global.player_node.tools = mining_drills["MiningDrill Starter"]
 
 func _on_change_mining_drill():

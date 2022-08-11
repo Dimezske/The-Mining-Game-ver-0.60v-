@@ -235,6 +235,7 @@ func _on_change_clothing():
 	emit_signal("slot_change", $ClothingContainer/EquipSlots/ShirtSlot,true)
 func _on_change_backpack():
 	emit_signal("slot_change", $ClothingContainer/EquipSlots/BackpacksSlot, true)
+	
 func _on_TextureButton_pressed():
 	$ClothingContainer/EquipSlots.visible = !$ClothingContainer/EquipSlots.visible
 	if !$ClothingContainer/EquipSlots.visible:

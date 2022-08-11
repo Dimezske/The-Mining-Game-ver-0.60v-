@@ -38,12 +38,8 @@ func _ready():
 	default_style.texture = default_tex
 	empty_style.texture = empty_tex
 	selected_style.texture = selected_tex
-		
-#	if randi() % 2 == 0:
-#		item = ItemClass.instance()
-#		add_child(item)
-
 	refresh_style()
+
 func refresh_style():
 	if slot_type == SlotType.SHIRTS:
 		if find_parent("Inventory").equip_slots[0].item:
@@ -66,41 +62,7 @@ func refresh_style():
 		set('custom_styles/panel', empty_style)
 	else:
 		set('custom_styles/panel', default_style)
-#func refresh_style():
-##	if slot_type == SlotType.SHIRTS:
-##		find_parent("Inventory")._on_shirt_change(equip_slots[0].slot_type,true)
-##	if slot_type == SlotType.BACKPACKS:
-##		find_parent("Inventory")._on_set_backpack(equip_slots[4].slot_type,true)
-#	if find_parent("Inventory").equip_slots[0].item:
-#		find_parent("Inventory")._on_shirt_change(find_parent("Inventory").equip_slots[0].slot_type,true)
-#	else:
-#		find_parent("Inventory")._on_shirt_change(find_parent("Inventory").equip_slots[0].slot_type,false)
-#
-#	if find_parent("Inventory").equip_slots[4].item:
-#		find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,true)
-#	else:
-#		find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,false)
-#
-#	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
-#		set('custom_styles/panel', selected_style)
-#	elif item == null:
-#		set('custom_styles/panel', empty_style)
-#	else:
-#		set('custom_styles/panel', default_style)
-#func refresh_style():
-#	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
-#		set('custom_styles/panel', selected_style)
-#	elif item == null:
-#		set('custom_styles/panel', empty_style)
-#	else:
-#		set('custom_styles/panel', default_style)
-		
-#func pickFromSlot():
-#	remove_child(item)
-#	var inventoryNode = find_parent("UserInterface")
-#	inventoryNode.add_child(item)
-#	item = null
-#	refresh_style()
+
 func pickFromSlot():
 	remove_child(item)
 	var inventoryNode = find_parent("UserInterface")
@@ -117,14 +79,7 @@ func putIntoSlot(new_item):
 	add_child(item)
 	item.z_index = 1
 	refresh_style()
-#func putIntoSlot(new_item):
-#	item = new_item
-#	item.position = Vector2(0, 0)
-#	var inventoryNode = find_parent("UserInterface")
-#	inventoryNode.remove_child(item)
-#	add_child(item)
-#	refresh_style()
-	
+
 func initialize_item(item_name, item_quantity):
 	if item == null:
 		item = ItemClass.instance()
