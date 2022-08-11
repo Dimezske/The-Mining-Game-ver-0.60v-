@@ -132,3 +132,8 @@ func _input(event):
 			var pickup_item = $PickupZone.items_in_range.values()[0]
 			pickup_item.pick_up_item(self)
 			$PickupZone.items_in_range.erase(pickup_item)
+			
+		for area in $PickupZone.get_overlapping_areas():
+			if area.is_in_group("Tools"):
+				$Position2D/Tools.add_child(area)
+				Global.isHoldingTool = true

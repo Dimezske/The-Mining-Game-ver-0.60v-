@@ -7,7 +7,6 @@ signal slot_change(slotNumber, ItemAdded)
 const SlotClass = preload("res://Scripts/Slot.gd")
 onready var inventory_slots = $GridContainer
 onready var equip_slots = $ClothingContainer/EquipSlots.get_children()
-onready  var usable_tools = Global.player_node.tools
 onready var clothing_shirt = Global.player_node.shirt
 onready var clothing_shirt_sleeves = Global.player_node.shirtsleeves
 var mouse_over_slot = false

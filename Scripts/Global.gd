@@ -24,7 +24,7 @@ var pressed_button
 
 var hasM4a1 : bool
 var hasMiningDrill : bool
-
+var isHoldingTool : bool
 func _ready():
 #	var level_path = get_tree().root.get_node("root/Game")
 #	level_path.get_tree().current_scene.name == "res://Scenes/OutsideWorld.tscn"

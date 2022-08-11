@@ -125,11 +125,12 @@ func left_click_not_holding(slot: SlotClass):
 
 func _on_set_mining_drill(slotNumber, ItemAdded):
 	if !ItemAdded:
-		Global.player_node.tools.texture = null
-		Global.player_node.tools.visible = false
-		return
-	Global.player_node.tools.visible = true
+		usable_tools.visible = false
+	if mining_drills.has("MiningDrill Starter") == ItemAdded:
+		usable_tools.visible = true
+		slotNumber = slots[0].slot_type
+		Global.isHoldingTool = true
 	Global.player_node.tools = mining_drills["MiningDrill Starter"]
-	
+
 func _on_change_mining_drill():
 	emit_signal("hotbar_slot_change", $HotbarSlots/HotbarSlot1,true)

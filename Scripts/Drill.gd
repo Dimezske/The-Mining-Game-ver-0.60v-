@@ -20,14 +20,15 @@ func _ready():
 	
 func _process(_delta):
 		#look_at(get_global_mouse_position())
-		_drills_input()
-		_drills_animation()
+		if Global.isHoldingTool:
+			_drills_input()
+			_drills_animation()
 		if being_picked_up == false:
 			pass
 		else:
 			PlayerInventory.add_item(item_name, 1)
 			queue_free()
-			
+
 func _drills_input():
 	if Global.hasMiningDrill:
 		if Input.is_action_just_pressed("use"):
