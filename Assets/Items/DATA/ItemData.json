@@ -23,6 +23,13 @@
         "StackSize": 10,
         "Description": "Quite a nice gun"
     },
+    "306PumpShotgun": {
+        "ItemCatagory": "Shotgun",
+        "ItemAttack": 5.75,
+        "ItemSpeed": 3.65,
+        "StackSize": 10,
+        "Description": "Pump Shotgun load with shells"
+     },
      "Trm17": {
         "ItemCatagory": "AssaultRifle",
         "ItemAttack": 2.75,

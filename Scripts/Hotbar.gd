@@ -6,9 +6,14 @@ onready var hotbar_slots = $HotbarSlots
 onready var active_item_label = $ActiveItemLabel
 onready var slots = hotbar_slots.get_children()
 onready var usable_tools = Global.player_node.tools
+onready var usable_weapons = Global.player_node.weapons
+
 
 var mining_drills = {
 	"MiningDrill Starter": load("res://Assets/Tools/Starter_drill1.png")
+}
+var assault_rifles = {
+	"M4": load("res://Assets/Weapons/Guns/M4A1_new.png")
 }
 func _ready():
 	PlayerInventory.connect("active_item_updated", self, "update_active_item_label")
@@ -31,8 +36,12 @@ func _ready():
 func update_active_item_label():
 	if slots[PlayerInventory.active_item_slot].item != null:
 		active_item_label.text = slots[PlayerInventory.active_item_slot].item.item_name
+		print("checking hotbar slot: " + slots[PlayerInventory.active_item_slot].item.item_name)
+#		playerNode.equip(weapon_name)
+		Global.playerNode.equip(slots[PlayerInventory.active_item_slot].item.item_name, self)
 	else:
 		active_item_label.text = ""
+		
 func initialize_hotbar():
 	for i in range(slots.size()):
 		if PlayerInventory.hotbar.has(i):
@@ -112,6 +121,7 @@ func left_click_not_holding(slot: SlotClass):
 	find_parent("UserInterface").holding_item.global_position = get_global_mouse_position()
 
 func _on_set_mining_drill(slotNumber, ItemAdded):
+	pass
 	if !ItemAdded:
 		usable_tools.visible = false
 	if mining_drills.has("MiningDrill Starter") == ItemAdded:
@@ -124,3 +134,35 @@ func _on_set_mining_drill(slotNumber, ItemAdded):
 
 func _on_change_mining_drill():
 	emit_signal("hotbar_slot_change", $HotbarSlots/HotbarSlot1,true)
+	pass
+func _on_set_assault_rifle(slotNumber, ItemAdded):
+	if !ItemAdded:
+		usable_weapons.visible = false
+	if assault_rifles.has("M4") == ItemAdded:
+		usable_weapons.visible = true
+		slotNumber = slots[0].slot_type
+		Global.isHoldingTool = true
+		Global.hasMiningDrill = true
+		slotNumber = slots[0].slot_type
+	Global.player_node.weapons = assault_rifles["M4"]
+	pass
+func _on_change_assault_rifle():
+	emit_signal("hotbar_slot_change", $HotbarSlots/HotbarSlot1,true)
+	pass
+func _on_equip_weapon(slotNumber, weapons):
+	if weapons == null:
+		usable_weapons.visible = false
+		Global.isHoldingWeapon = false
+	else:
+		usable_weapons.visible = true
+		slotNumber = slots[0].slot_type
+		Global.isHoldingWeapon = true
+
+func _on_equip_tool(slotNumber, tools):
+	if tools == null:
+		usable_tools.visible = false
+		Global.isHoldingTool = false
+	else:
+		usable_tools.visible = true
+		slotNumber = slots[0].slot_type
+		Global.isHoldingTool = true

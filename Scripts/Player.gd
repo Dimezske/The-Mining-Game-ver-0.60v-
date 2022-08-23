@@ -8,8 +8,8 @@ onready var Weapon: Node2D = get_node("Position2D/Weapons")
 onready var parent = get_parent()
 
 var weapon = []
-var current_weapon = [] 
-
+#var current_weapon = [] 
+onready var M4 = load("res://Scenes/M4.tscn")
 #onready var items = preload("res://Item.tscn")
 onready var items = preload("res://Scenes/Item.tscn")
 onready var animated_sprite = $AnimatedSprite
@@ -28,7 +28,11 @@ var player_in_range : bool
 var isHoldingTool : bool
 var isHoldingWeapon : bool
 var isLazer : bool
-
+var current_weapon
+#var hotbar = null
+#func init(hotbar):
+#	self.hotbar = hotbar
+	
 func _ready():
 	Global.player_node = self
 	#self.global_position = Global.player_initial_map_position
@@ -38,9 +42,8 @@ func _ready():
 func _physics_process(_delta):
 	_get_input()
 	#get_tool_pickup()
-	#get_weapon_pickup()
+	get_weapon_pickup()
 	#drop_tool()
-	#toggle_lazer()
 	if Input.is_action_just_pressed('fire'): # Test if button is pressed
 		for weapons in $Position2D/Weapons.get_children(): # Iterate over all weapons
 			if 'fire' in weapons: # Does this "weapon" essentially have a fire button?
@@ -132,8 +135,36 @@ func _input(event):
 			var pickup_item = $PickupZone.items_in_range.values()[0]
 			pickup_item.pick_up_item(self)
 			$PickupZone.items_in_range.erase(pickup_item)
-			
+		
 		for area in $PickupZone.get_overlapping_areas():
 			if area.is_in_group("Tools"):
 				$Position2D/Tools.add_child(area)
 				Global.isHoldingTool = true
+
+func get_weapon_pickup():
+	if Input.is_action_just_pressed("interact"):
+		for area in $PickupZone.get_overlapping_areas():
+			if area.is_in_group("Weapons"):
+				area.get_parent().remove_child(area)
+				area.position = Vector2(0,-25)
+				$Position2D/Weapons.add_child(area)
+				isHoldingWeapon = true
+				# someone told me to put this here it has comments already
+				for weapon in $Position2D/Weapons.get_children(): # Iterate over all weapons
+					if 'fire' in weapon: # Does this "weapon" essentially have a fire button?
+						weapon.fire() # Fire the weapon
+						print('fire')
+func equip(weapon_name, hotbar):
+	var weapon = M4.instance()
+	print("Weapon Equiped")
+	for slot in hotbar.slots:
+		print(slot, " slot item: ", slot.item)
+		if weapon_name == slot.item.item_name:
+#				Global.playerNode.equip(slot.slots[PlayerInventory.active_item_slot].item.item_name, self)
+#				Global.playerNode.equip(slot.item.item_name, hotbar)
+				return
+	print("Weapon not in any slot")
+#func equip(weapon_name):
+#	print("Weapon Equiped")
+#	if weapon_name == :
+#	Global.playerNode.equip(slots[PlayerInventory.active_item_slot].item.item_name)

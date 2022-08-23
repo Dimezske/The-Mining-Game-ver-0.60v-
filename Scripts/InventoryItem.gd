@@ -1,6 +1,7 @@
 extends TextureRect
 
-onready var border: ReferenceRect = get_node("ReferenceRect")
+onready var border: ReferenceRect = get_node("ReferenceRect") 
+
 
 func initialize(texture: Texture):
 	self.texture = texture

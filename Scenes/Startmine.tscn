@@ -46,8 +46,7 @@
 [ext_resource path="res://Scenes/BlastFurnaceFountry.tscn" type="PackedScene" id=44]
 [ext_resource path="res://Scenes/GantryCrane.tscn" type="PackedScene" id=45]
 [ext_resource path="res://Scenes/Pillar.tscn" type="PackedScene" id=46]
-[ext_resource path="res://Scenes/C4small.tscn" type="PackedScene" id=47]
-[ext_resource path="res://Scenes/C4Large.tscn" type="PackedScene" id=48]
+[ext_resource path="res://Scenes/306PumpShotgun.tscn" type="PackedScene" id=47]
 [ext_resource path="res://Scenes/TacticalResponseGasMaskIdle.tscn" type="PackedScene" id=49]
 [ext_resource path="res://Scenes/Trm17.tscn" type="PackedScene" id=50]
 [ext_resource path="res://Scripts/Startmine.gd" type="Script" id=51]
@@ -56,6 +55,7 @@
 [ext_resource path="res://Scenes/SugarCaneSeeds.tscn" type="PackedScene" id=54]
 [ext_resource path="res://Scenes/Backpack1.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Scenes/Clothing/LimeShirt.tscn" type="PackedScene" id=56]
+[ext_resource path="res://Scenes/M4.tscn" type="PackedScene" id=57]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 128, 0, 128 )
@@ -472,11 +472,10 @@ scale = Vector2( 0.6, 0.8 )
 
 [node name="Weapons" type="YSort" parent="World/YSort"]
 
-[node name="C4small" parent="World/YSort/Weapons" instance=ExtResource( 47 )]
-position = Vector2( -50, -95 )
+[node name="M4" parent="World/YSort/Weapons" instance=ExtResource( 57 )]
 
-[node name="C4Large" parent="World/YSort/Weapons" instance=ExtResource( 48 )]
-position = Vector2( -11, -95 )
+[node name="306PumpShotgun" parent="World/YSort/Weapons" instance=ExtResource( 47 )]
+position = Vector2( -328, 295 )
 
 [node name="Enemies" type="Node2D" parent="World/YSort"]
 

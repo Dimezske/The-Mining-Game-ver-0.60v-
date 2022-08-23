@@ -3843,6 +3843,12 @@ visible = false
 position = Vector2( -1, -15 )
 shape = SubResource( 1 )
 
+[node name="EquipItems" type="Node2D" parent="."]
+
+[node name="Tools" type="Node2D" parent="EquipItems"]
+
+[node name="Weapons" type="Node2D" parent="EquipItems"]
+
 [node name="Position2D" type="Position2D" parent="."]
 visible = false
 position = Vector2( 0, -16 )
@@ -3857,7 +3863,7 @@ collision_layer = 0
 collision_mask = 16
 script = ExtResource( 19 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupZone"]
+[node name="ItemPickup" type="CollisionShape2D" parent="PickupZone"]
 position = Vector2( 0, -16 )
 shape = SubResource( 168 )
 
