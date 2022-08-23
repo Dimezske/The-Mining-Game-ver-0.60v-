@@ -42,6 +42,7 @@ func update_active_item_label():
 	else:
 		active_item_label.text = ""
 		
+		
 func initialize_hotbar():
 	for i in range(slots.size()):
 		if PlayerInventory.hotbar.has(i):

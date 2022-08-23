@@ -1,6 +1,6 @@
 extends Node2D
 class_name Weapon
-onready var playerPath = preload("res://Scenes/Player.tscn")
+onready var playerPath = load("res://Scenes/Player.tscn")
 onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 onready var hitbox: Area2D = get_node("Node2D/Sprite/Hitbox")
 const M4A1_bulletPath = preload("res://Scenes/Bullet.tscn")
@@ -29,6 +29,7 @@ var hasAttachedMod2: bool
 var hasAttachedMod3: bool
 var hasAttachedMod4: bool
 var hasAttachedMod5: bool
+var isHolding: bool
 var isShooting : bool
 var isLazer : bool # detect on/ off
 
@@ -72,6 +73,7 @@ func _physics_process(_delta):
 			if player_in_range == true:
 				player_picked_up = true
 				print(player_picked_up)
+				isHolding = true
 				#if slots[PlayerInventory.active_item_slot].item.item_name == slots[PlayerInventory.active_item_slot].item.item_name:
 					#hasWeapon = true
 	if being_picked_up == false:
@@ -140,8 +142,8 @@ func assaultRifle_fire():
 		look_at(get_global_mouse_position())
 		#$Node2D/Sprite.flip_h = true
 #		$Node2D/Sprite.flip_v = true
-		$Node2D/Sprite/Mods/Silencer2.flip_h = true
-		$Node2D/Sprite/Mods/Silencer2.position = Vector2(48,5)
+		#$Node2D/Sprite/Mods/Silencer2.flip_h = true
+		#$Node2D/Sprite/Mods/Silencer2.position = Vector2(48,5)
 		#$M4A1Sprite.flip_h = true
 		#$M4A1Sprite.flip_v = true
 		bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
@@ -149,8 +151,9 @@ func assaultRifle_fire():
 		if (isShooting == false):
 			#$Node2D/Sprite.flip_v = false
 			#$Node2D/Sprite.flip_v = true
-			$Node2D/Sprite/Mods/Silencer2.flip_h = true
-			$Node2D/Sprite/Mods/Silencer2.position = Vector2(48,5)
+			#$Node2D/Sprite/Mods/Silencer2.flip_h = true
+			#$Node2D/Sprite/Mods/Silencer2.position = Vector2(48,5)
+			pass
 	#Down
 	if Global.player_direction == "2":
 		bullet_speed = 500
@@ -176,7 +179,7 @@ func assaultRifle_fire():
 
 #Assault Rifle Animations
 func _assault_Rifle_Animation():
-	
+	if isHolding:
 		if parent_velocity != Vector2.ZERO:
 			animationTree.set("parameters/IdleM4A1/blend_position", parent_velocity.normalized())
 			animationState.travel("IdleM4A1")

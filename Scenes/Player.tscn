@@ -3843,11 +3843,8 @@ visible = false
 position = Vector2( -1, -15 )
 shape = SubResource( 1 )
 
-[node name="EquipItems" type="Node2D" parent="."]
-
-[node name="Tools" type="Node2D" parent="EquipItems"]
-
-[node name="Weapons" type="Node2D" parent="EquipItems"]
+[node name="WeaponHolder" type="Node2D" parent="."]
+position = Vector2( -25, -45 )
 
 [node name="Position2D" type="Position2D" parent="."]
 visible = false
