@@ -41,7 +41,7 @@ func update_active_item_label():
 		Global.playerNode.equip(slots[PlayerInventory.active_item_slot].item.item_name, self)
 	else:
 		active_item_label.text = ""
-		
+		Global.playerNode.unequip()
 		
 func initialize_hotbar():
 	for i in range(slots.size()):

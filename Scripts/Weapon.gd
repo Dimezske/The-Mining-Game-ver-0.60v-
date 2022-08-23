@@ -179,7 +179,7 @@ func assaultRifle_fire():
 
 #Assault Rifle Animations
 func _assault_Rifle_Animation():
-	if isHolding:
+	if Global.playerNode.current_weapon:
 		if parent_velocity != Vector2.ZERO:
 			animationTree.set("parameters/IdleM4A1/blend_position", parent_velocity.normalized())
 			animationState.travel("IdleM4A1")
