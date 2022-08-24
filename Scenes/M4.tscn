@@ -552,6 +552,18 @@ tracks/14/keys = {
 "update": 0,
 "values": [ Vector2( -105.714, -5 ) ]
 }
+tracks/15/type = "value"
+tracks/15/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -82, -5 ) ]
+}
 
 [sub_resource type="Animation" id=64]
 resource_name = "Shooting_M4A1-down"
@@ -700,6 +712,18 @@ tracks/11/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 78 ) ]
 }
 
 [sub_resource type="Animation" id=65]
@@ -850,6 +874,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [ Vector2( -105.714, -5 ) ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -82, -5 ) ]
+}
 
 [sub_resource type="Animation" id=66]
 resource_name = "Shooting_M4A1-right"
@@ -998,6 +1034,18 @@ tracks/11/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 90, -5 ) ]
 }
 
 [sub_resource type="Animation" id=67]
@@ -1148,6 +1196,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -78 ) ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=50]
 animation = "Idle_M4A1-left"
@@ -1260,6 +1320,7 @@ position = Vector2( 38.5714, -4 )
 shape = SubResource( 53 )
 
 [node name="Muzzle" type="Node2D" parent="Node2D/Sprite"]
+position = Vector2( -82, -5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle_M4A1-down = SubResource( 55 )
@@ -1277,8 +1338,8 @@ tree_root = SubResource( 76 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 77 )
-parameters/IdleM4A1/blend_position = Vector2( -1, 0.0153847 )
-parameters/Shooting/blend_position = Vector2( -0.573487, -0.145833 )
+parameters/IdleM4A1/blend_position = Vector2( 0, 0 )
+parameters/Shooting/blend_position = Vector2( 0, 0 )
 
 [node name="M4A1_Shoot_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

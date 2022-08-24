@@ -60,12 +60,8 @@ func _ready():
 	item_name = "M4"
 
 func _physics_process(_delta):
-	_guns_input()
-	_assault_Rifle_Animation()
-	toggle_lazer()
-	hasAttachedMod1 = true
-	hasAttachedMod2 = true
-	
+	if Global.playerNode.isHoldingWeapon:
+		isEquiped()
 	if Input.is_action_just_pressed("interact"):
 		if player_picked_up == true:
 			player_picked_up = false
@@ -74,14 +70,19 @@ func _physics_process(_delta):
 				player_picked_up = true
 				print(player_picked_up)
 				isHolding = true
-				#if slots[PlayerInventory.active_item_slot].item.item_name == slots[PlayerInventory.active_item_slot].item.item_name:
-					#hasWeapon = true
 	if being_picked_up == false:
 		pass
 	else:
 		PlayerInventory.add_item(item_name, 1)
 		queue_free()
 	#velocity = move_and_slide(velocity, Vector2.UP)
+func isEquiped():
+	_guns_input()
+	_assault_Rifle_Animation()
+	toggle_lazer()
+	hasAttachedMod1 = true
+	hasAttachedMod2 = true
+	
 func init(item):
 	if item_name == "M4":
 		pass
@@ -91,12 +92,12 @@ func pick_up_item(body):
 	
 func _guns_input():
 	look_at(get_global_mouse_position())
-	if Input.is_action_just_pressed("fire") and hasWeapon:
+	if Input.is_action_just_pressed("fire"):
 		if $M4A1_Shoot_Sound.playing == false:
 			$M4A1_Shoot_Sound.play()
 			isShooting = true
 			assaultRifle_fire() # == null
-	if Input.is_action_pressed("fire") and hasWeapon:
+	if Input.is_action_pressed("fire"):
 		if $M4A1_Shoot_Sound.playing == false:
 			$M4A1_Shoot_Sound.play()
 			isShooting = true
@@ -118,8 +119,6 @@ func assaultRifle_fire():
 	# Left
 	if Global.player_direction[0]:
 		bullet_speed = 500
-		print('FIRE!')
-		print(Global.player_direction)
 		isShooting = true 
 		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position()
 		bullet_instance.rotation_degrees = rotation_degrees
@@ -133,8 +132,6 @@ func assaultRifle_fire():
 	if Global.player_direction == "1":
 		$Node2D/Sprite.flip_h = false
 		bullet_speed = 500
-		print('FIRE!')
-		print(Global.player_direction)
 		isShooting = true 
 		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position()
 		#bullet_instance.position = $Muzzle.get_global_position()
@@ -157,8 +154,6 @@ func assaultRifle_fire():
 	#Down
 	if Global.player_direction == "2":
 		bullet_speed = 500
-		print('FIRE!')
-		print(Global.player_direction)
 		isShooting = true 
 		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position()
 		bullet_instance.rotation_degrees = rotation_degrees + (270 / PI)
@@ -168,8 +163,6 @@ func assaultRifle_fire():
 	#Up
 	if Global.player_direction == "3":
 		bullet_speed = -500
-		print('FIRE!')
-		print(Global.player_direction)
 		isShooting = true 
 		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position() + Vector2(0,0)
 		bullet_instance.rotation_degrees = rotation_degrees + (-270 / PI)
@@ -179,11 +172,14 @@ func assaultRifle_fire():
 
 #Assault Rifle Animations
 func _assault_Rifle_Animation():
-	if Global.playerNode.current_weapon:
+#	if Global.playerNode.current_weapon:
+	if Global.playerNode.isHoldingWeapon:
 		if parent_velocity != Vector2.ZERO:
 			animationTree.set("parameters/IdleM4A1/blend_position", parent_velocity.normalized())
 			animationState.travel("IdleM4A1")
+			print(animationState.travel("IdleM4A1"))
 			if isShooting:
+				print(isShooting)
 				if item_name == "M4":
 					if Global.player_direction == "0":#right
 						$AnimationPlayer.play("Shooting_M4A1-right")

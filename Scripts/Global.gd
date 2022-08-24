@@ -5,6 +5,7 @@ onready var Green = Color(0,255,0,255)
 onready var Blue = Color(0,0,255,255)
 onready var _M4 = preload("res://Scenes/M4.tscn")
 var player_node
+var weapon_node
 onready var playerNode = get_tree().get_root().get_node("Game/World/YSort/Character/Player")
 onready var weaponNode = get_tree().get_root().get_node("Game/World/YSort/Weapons")
 var player_initial_map_position = Vector2(200,200)

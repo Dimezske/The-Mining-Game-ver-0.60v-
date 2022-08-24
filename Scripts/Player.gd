@@ -128,7 +128,10 @@ func _get_input():
 		$AnimationTree.set("parameters/Idle/blend_position", facing)
 		$AnimationTree.set("parameters/Walk/blend_position", facing)
 	#Animation hold
-	for weapons in $Position2D/Weapons.get_children(): # Iterate over all weapons
+#	for weapons in $Position2D/Weapons.get_children(): # Iterate over all weapons
+#		if 'parent_velocity' in weapons: # Does this "weapon" want to receive the player's velocity?
+#			weapons.parent_velocity = velocity
+	for weapons in $WeaponHolder.get_children(): # Iterate over all weapons
 		if 'parent_velocity' in weapons: # Does this "weapon" want to receive the player's velocity?
 			weapons.parent_velocity = velocity
 func _input(event):
@@ -164,6 +167,7 @@ func equip(weapon_name, hotbar):
 				weapon["M4"] = M4_path.instance()
 				get_node("WeaponHolder").add_child(weapon["M4"])
 				current_weapon = weapon["M4"]
+				isHoldingWeapon = true
 				return
 	print("Weapon not in any slot")
 
