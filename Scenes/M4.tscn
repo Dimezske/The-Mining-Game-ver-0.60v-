@@ -698,7 +698,7 @@ tracks/10/enabled = true
 tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( 0, 96 ) ]
 }
 tracks/11/type = "value"
@@ -710,7 +710,7 @@ tracks/11/enabled = true
 tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ 0.0 ]
 }
 tracks/12/type = "value"
@@ -722,7 +722,7 @@ tracks/12/enabled = true
 tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( 0, 78 ) ]
 }
 
@@ -845,7 +845,7 @@ tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( -0.1 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 0 ]
@@ -859,7 +859,7 @@ tracks/10/enabled = true
 tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
@@ -871,7 +871,7 @@ tracks/11/enabled = true
 tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( -105.714, -5 ) ]
 }
 tracks/12/type = "value"
@@ -883,8 +883,8 @@ tracks/12/enabled = true
 tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -82, -5 ) ]
+"update": 1,
+"values": [ Vector2( -91, -5 ) ]
 }
 
 [sub_resource type="Animation" id=66]
@@ -1020,7 +1020,7 @@ tracks/10/enabled = true
 tracks/10/keys = {
 "times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( 105.714, -6 ) ]
 }
 tracks/11/type = "value"
@@ -1032,7 +1032,7 @@ tracks/11/enabled = true
 tracks/11/keys = {
 "times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ 0.0 ]
 }
 tracks/12/type = "value"
@@ -1044,7 +1044,7 @@ tracks/12/enabled = true
 tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( 90, -5 ) ]
 }
 
@@ -1181,7 +1181,7 @@ tracks/10/enabled = true
 tracks/10/keys = {
 "times": PoolRealArray( -0.1 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( 1.42857, -96 ) ]
 }
 tracks/11/type = "value"
@@ -1193,7 +1193,7 @@ tracks/11/enabled = true
 tracks/11/keys = {
 "times": PoolRealArray( -0.1 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ 0.0 ]
 }
 tracks/12/type = "value"
@@ -1205,7 +1205,7 @@ tracks/12/enabled = true
 tracks/12/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
+"update": 1,
 "values": [ Vector2( 0, -78 ) ]
 }
 
@@ -1232,9 +1232,6 @@ blend_point_3/node = SubResource( 78 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=79]
-animation = "Shooting_M4A1-left"
-
 [sub_resource type="AnimationNodeAnimation" id=80]
 animation = "Shooting_M4A1-down"
 
@@ -1244,15 +1241,18 @@ animation = "Shooting_M4A1-right"
 [sub_resource type="AnimationNodeAnimation" id=82]
 animation = "Shooting_M4A1-up"
 
+[sub_resource type="AnimationNodeAnimation" id=83]
+animation = "Shooting_M4A1-left"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id=39]
-blend_point_0/node = SubResource( 79 )
-blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 80 )
-blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 81 )
-blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 82 )
-blend_point_3/pos = Vector2( 0, -1 )
+blend_point_0/node = SubResource( 80 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 81 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 82 )
+blend_point_2/pos = Vector2( 0, -1 )
+blend_point_3/node = SubResource( 83 )
+blend_point_3/pos = Vector2( -1, 0 )
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
@@ -1336,7 +1336,6 @@ anims/Shooting_M4A1-up = SubResource( 67 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 76 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 77 )
 parameters/IdleM4A1/blend_position = Vector2( 0, 0 )
 parameters/Shooting/blend_position = Vector2( 0, 0 )

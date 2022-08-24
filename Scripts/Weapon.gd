@@ -17,7 +17,7 @@ var hasWeapon : bool = false
 var ammoAmount: int
 var ammoMagazineAmount: int
 var bulletSpread: Array = [0,0]
-var bullet_speed = -500
+var bullet_speed
 var fire_rate: float
 var damage: float
 var freeze: float
@@ -91,7 +91,7 @@ func pick_up_item(body):
 	being_picked_up = true
 	
 func _guns_input():
-	look_at(get_global_mouse_position())
+	#look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("fire"):
 		if $M4A1_Shoot_Sound.playing == false:
 			$M4A1_Shoot_Sound.play()
@@ -114,61 +114,30 @@ func assaultRifle_mods():
 		$Node2D/Sprite/Mods/LazerGreen.visible = false
 #Shooting method
 func assaultRifle_fire():
-#	var player = playerPath.instance()
 	var bullet_instance = M4A1_bulletPath.instance()
-	# Left
-	if Global.player_direction[0]:
-		bullet_speed = 500
-		isShooting = true 
-		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position()
-		bullet_instance.rotation_degrees = rotation_degrees
-		look_at(get_global_mouse_position())
-#		$Node2D/Sprite.flip_h = false
-#		$Node2D/Sprite.flip_v = false
-		bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
-		get_tree().get_root().add_child(bullet_instance)
-	
-	#Right
-	if Global.player_direction == "1":
-		$Node2D/Sprite.flip_h = false
-		bullet_speed = 500
-		isShooting = true 
-		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position()
-		#bullet_instance.position = $Muzzle.get_global_position()
-		bullet_instance.rotation_degrees = rotation_degrees
-		look_at(get_global_mouse_position())
-		#$Node2D/Sprite.flip_h = true
-#		$Node2D/Sprite.flip_v = true
-		#$Node2D/Sprite/Mods/Silencer2.flip_h = true
-		#$Node2D/Sprite/Mods/Silencer2.position = Vector2(48,5)
-		#$M4A1Sprite.flip_h = true
-		#$M4A1Sprite.flip_v = true
-		bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(rotation))
-		get_tree().get_root().add_child(bullet_instance)
-		if (isShooting == false):
-			#$Node2D/Sprite.flip_v = false
-			#$Node2D/Sprite.flip_v = true
-			#$Node2D/Sprite/Mods/Silencer2.flip_h = true
-			#$Node2D/Sprite/Mods/Silencer2.position = Vector2(48,5)
-			pass
-	#Down
-	if Global.player_direction == "2":
-		bullet_speed = 500
-		isShooting = true 
-		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position()
-		bullet_instance.rotation_degrees = rotation_degrees + (270 / PI)
-		#look_at(get_global_mouse_position())
-		bullet_instance.apply_impulse(Vector2(), Vector2(0, bullet_speed).rotated(rotation))
-		get_tree().get_root().add_child(bullet_instance)
-	#Up
-	if Global.player_direction == "3":
-		bullet_speed = -500
-		isShooting = true 
-		bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position() + Vector2(0,0)
-		bullet_instance.rotation_degrees = rotation_degrees + (-270 / PI)
-		#look_at(get_global_mouse_position())
-		bullet_instance.apply_impulse(Vector2(), Vector2(0, bullet_speed).rotated(rotation))
-		get_tree().get_root().add_child(bullet_instance)
+	bullet_instance.position = $Node2D/Sprite/Muzzle.get_global_position()
+	bullet_instance.rotation_degrees = rotation_degrees
+	isShooting = true
+	bullet_speed = 500
+	var impulse_dir : Vector2
+	match int(Global.player_direction):
+		0: # Left
+			$Node2D/Sprite.flip_h = true
+			look_at(get_global_mouse_position())
+			impulse_dir = Vector2(bullet_speed, 0)
+		1: # Right
+			$Node2D/Sprite.flip_h = false
+			look_at(get_global_mouse_position())
+			impulse_dir = Vector2(bullet_speed, 0)
+		2: # Down
+			bullet_instance.rotation_degrees += (270 / PI)
+			impulse_dir = Vector2(0, bullet_speed)
+		3: # Up
+			bullet_instance.position += Vector2(0,0)
+			bullet_instance.rotation_degrees += (-270 / PI)
+			impulse_dir = Vector2(0, -bullet_speed)  
+	bullet_instance.apply_impulse(Vector2(), impulse_dir.rotated(rotation))
+	get_tree().get_root().add_child(bullet_instance)
 
 #Assault Rifle Animations
 func _assault_Rifle_Animation():
