@@ -473,7 +473,6 @@ scale = Vector2( 0.6, 0.8 )
 [node name="Weapons" type="YSort" parent="World/YSort"]
 
 [node name="M4" parent="World/YSort/Weapons" instance=ExtResource( 57 )]
-on_floor = true
 
 [node name="306PumpShotgun" parent="World/YSort/Weapons" instance=ExtResource( 47 )]
 position = Vector2( -328, 295 )

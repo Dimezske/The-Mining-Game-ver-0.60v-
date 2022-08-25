@@ -11,6 +11,7 @@ onready var weaponNode = get_tree().get_root().get_node("Game/World/YSort/Weapon
 var player_initial_map_position = Vector2(200,200)
 #var getlevel_start = preload("res://Scenes/Startmine.tscn")
 var player_direction = ["LEFT","RIGHT","UP","DOWN"]
+
 var player_velocity = Vector2()
 var player_speed
 

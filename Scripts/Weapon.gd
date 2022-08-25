@@ -18,6 +18,7 @@ var ammoAmount: int
 var ammoMagazineAmount: int
 var bulletSpread: Array = [0,0]
 var bullet_speed
+var negative_bullet_speed = -500
 var fire_rate: float
 var damage: float
 var freeze: float
@@ -32,7 +33,7 @@ var hasAttachedMod5: bool
 var isHolding: bool
 var isShooting : bool
 var isLazer : bool # detect on/ off
-
+onready var rayCast2D = $RayCast2D
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -55,7 +56,7 @@ onready var AssaultRifles : Dictionary =  {
 var sidearm_data = {
 		tac1 = load("res://Scenes/Tac1.tscn")
 	}
-	
+
 func _ready():
 	item_name = "M4"
 
@@ -121,14 +122,15 @@ func assaultRifle_fire():
 	bullet_speed = 500
 	var impulse_dir : Vector2
 	match int(Global.player_direction):
-		0: # Left
-			$Node2D/Sprite.flip_h = true
-			look_at(get_global_mouse_position())
+		0: # Right
+			#$Node2D/Sprite.flip_h = true
+			#look_at(get_global_mouse_position())
 			impulse_dir = Vector2(bullet_speed, 0)
-		1: # Right
-			$Node2D/Sprite.flip_h = false
-			look_at(get_global_mouse_position())
-			impulse_dir = Vector2(bullet_speed, 0)
+			print("right")
+		1: # Left
+			if Global.player_direction == "1":
+				impulse_dir = Vector2(negative_bullet_speed, 0)
+				print("left")
 		2: # Down
 			bullet_instance.rotation_degrees += (270 / PI)
 			impulse_dir = Vector2(0, bullet_speed)

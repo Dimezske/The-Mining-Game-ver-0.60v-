@@ -5,7 +5,6 @@
 [ext_resource path="res://Assets/Weapons/Guns/Begin.png" type="Texture" id=3]
 [ext_resource path="res://Materials/LazerDesignator.tres" type="Material" id=4]
 
-
 [sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
 
