@@ -33,7 +33,7 @@ var hasAttachedMod5: bool
 var isHolding: bool
 var isShooting : bool
 var isLazer : bool # detect on/ off
-onready var rayCast2D = $RayCast2D
+
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")

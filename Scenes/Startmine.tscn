@@ -449,6 +449,9 @@ z_index = 2
 
 [node name="Tools" type="YSort" parent="World/YSort"]
 
+[node name="MiningDrill" parent="World/YSort/Tools" instance=ExtResource( 33 )]
+position = Vector2( -228, 134 )
+
 [node name="Machines" type="YSort" parent="World/YSort"]
 
 [node name="RockGrinder" parent="World/YSort/Machines" instance=ExtResource( 4 )]
@@ -654,9 +657,6 @@ position = Vector2( 395, 420 )
 
 [node name="SugarCaneSeeds" parent="World/YSort" instance=ExtResource( 54 )]
 position = Vector2( 352, 232 )
-
-[node name="MiningDrill" parent="World/YSort" instance=ExtResource( 33 )]
-position = Vector2( -228, 134 )
 
 [node name="Portals" type="Node2D" parent="World/YSort"]
 
