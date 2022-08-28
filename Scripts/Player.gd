@@ -8,11 +8,12 @@ onready var Weapon: Node2D = get_node("Position2D/Weapons")
 onready var parent = get_parent()
 
 var weapon : Dictionary = {
-	"M4": load("res://Scenes/M4.tscn")
+	"M4": load("res://Scenes/M4.tscn"),
+	"Trm17" : load("res://Scenes/Trm17.tscn")
 }
 var current_weapon
-onready var M4_path = load("res://Scenes/M4.tscn")
-#onready var items = preload("res://Item.tscn")
+#onready var M4_path = load("res://Scenes/M4.tscn")
+#onready var TRM17_path = load("res://Scenes/Trm17.tscn")
 onready var items = preload("res://Scenes/Item.tscn")
 onready var animated_sprite = $AnimatedSprite
 onready var velocity = Global.player_velocity
@@ -163,31 +164,13 @@ func equip(weapon_name, hotbar):
 	print("Weapon Equiped")
 	for slot in hotbar.slots:
 		print(slot, " slot item: ", slot.item)
-		if weapon_name == slot.item.item_name:
-				weapon["M4"] = M4_path.instance()
-				get_node("WeaponHolder").add_child(weapon["M4"])
-				current_weapon = weapon["M4"]
-				isHoldingWeapon = true
-				return
-	print("Weapon not in any slot")
-
-func unequip():
-	get_node("WeaponHolder").remove_child(current_weapon)
-	current_weapon = null 
-#func unequip(weapon_name, hotbar):
-#	print("Weapon Equiped")
-#	for slot in hotbar.slots:
-#		print(slot, " slot item: ", slot.item)
-#		if weapon_name == slot.item.item_name:
-#				weapon["M4"] = M4_path.instance()
-#				get_node("WeaponHolder").remove_child(weapon["M4"])
-##				Global.playerNode.equip(slot.slots[PlayerInventory.active_item_slot].item.item_name, self)
-##				Global.playerNode.equip(slot.item.item_name, hotbar)
-#				return null
-#	print("Weapon not in any slot")
-#func equip(weapon_name):
-#	print("Weapon Equiped")
-#	if weapon_name == :
-#	Global.playerNode.equip(slots[PlayerInventory.active_item_slot].item.item_name)
-#				Global.playerNode.equip(slot.slots[PlayerInventory.active_item_slot].item.item_name, self)
-#				Global.playerNode.equip(slot.item.item_name, hotbar)
+		print(weapon)
+		if not slot.item:
+			return
+		if weapon.has(slot.item.item_name):
+			var w = weapon[slot.item.item_name].instance()
+			get_node("WeaponHolder").add_child(w)
+			current_weapon = w
+			isHoldingWeapon = true
+			return
+		print("Weapon not in any slot")

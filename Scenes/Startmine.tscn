@@ -480,6 +480,10 @@ scale = Vector2( 0.6, 0.8 )
 [node name="306PumpShotgun" parent="World/YSort/Weapons" instance=ExtResource( 47 )]
 position = Vector2( -328, 295 )
 
+[node name="Trm17" parent="World/YSort/Weapons" instance=ExtResource( 50 )]
+position = Vector2( -163, -76 )
+scale = Vector2( 1.5, 1.6 )
+
 [node name="Enemies" type="Node2D" parent="World/YSort"]
 
 [node name="Environment" type="Node2D" parent="World/YSort"]
@@ -642,9 +646,6 @@ z_index = 1
 [node name="Pillar2" parent="World/YSort" instance=ExtResource( 46 )]
 position = Vector2( 414, 190 )
 z_index = 1
-
-[node name="Trm17" parent="World/YSort" instance=ExtResource( 50 )]
-position = Vector2( -163, -76 )
 
 [node name="MineRocks" parent="World/YSort" instance=ExtResource( 52 )]
 position = Vector2( 429, 383 )

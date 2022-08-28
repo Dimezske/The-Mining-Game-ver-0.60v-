@@ -1,6 +1,6 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://Scripts/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/M4.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Weapons/Guns/M4A1_new.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Weapons/Guns/Mods/LazerDesignator_Green.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Weapons/Guns/Mods/AssaultRifle_Silencer2.png" type="Texture" id=4]
@@ -11,15 +11,12 @@
 [sub_resource type="RectangleShape2D" id=54]
 extents = Vector2( 16, 37 )
 
-[sub_resource type="RectangleShape2D" id=53]
-extents = Vector2( 17.1429, 2.5 )
-
 [sub_resource type="Animation" id=55]
 resource_name = "Idle_M4A1-down"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -31,7 +28,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/path = NodePath("Pickup/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -43,7 +40,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/2/path = NodePath("Pickup/CollisionShape2D:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -55,7 +52,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/3/path = NodePath("Mods/Silencer2:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -67,7 +64,7 @@ tracks/3/keys = {
 "values": [ 3 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/4/path = NodePath("Mods/Silencer2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -79,7 +76,7 @@ tracks/4/keys = {
 "values": [ Vector2( -1, 64 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/Mods/Silencer2:rotation_degrees")
+tracks/5/path = NodePath("Mods/Silencer2:rotation_degrees")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -91,7 +88,7 @@ tracks/5/keys = {
 "values": [ 0.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/6/path = NodePath("Mods/LazerBeam:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -108,7 +105,7 @@ resource_name = "Idle_M4A1-left"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -120,7 +117,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/1/path = NodePath("Mods/LazerGreen:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -132,7 +129,7 @@ tracks/1/keys = {
 "values": [ Vector2( -15, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Node2D/Sprite/Mods/LazerGreen:z_index")
+tracks/2/path = NodePath("Mods/LazerGreen:z_index")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -144,7 +141,7 @@ tracks/2/keys = {
 "values": [ 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/3/path = NodePath("Mods/LazerBeam:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -156,7 +153,7 @@ tracks/3/keys = {
 "values": [ Vector2( -25, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/4/path = NodePath("Mods/Silencer2:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -168,7 +165,7 @@ tracks/4/keys = {
 "values": [ 0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/5/path = NodePath("Mods/Silencer2:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -180,7 +177,7 @@ tracks/5/keys = {
 "values": [ Vector2( -48.0001, -5 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/6/path = NodePath("Mods/LazerGreen:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -192,7 +189,7 @@ tracks/6/keys = {
 "values": [ 0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("CollisionShape2D:position")
+tracks/7/path = NodePath("Pickup/CollisionShape2D:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -204,7 +201,7 @@ tracks/7/keys = {
 "values": [ Vector2( 0, -1.19209e-07 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/8/path = NodePath("Pickup/CollisionShape2D:rotation_degrees")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -221,7 +218,7 @@ resource_name = "Idle_M4A1-right"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -233,7 +230,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/1/path = NodePath("Mods/Silencer2:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -245,7 +242,7 @@ tracks/1/keys = {
 "values": [ 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/2/path = NodePath("Mods/Silencer2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -257,7 +254,7 @@ tracks/2/keys = {
 "values": [ Vector2( 49.0001, -5 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/3/path = NodePath("Mods/LazerGreen:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -269,7 +266,7 @@ tracks/3/keys = {
 "values": [ 3 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/4/path = NodePath("Mods/LazerGreen:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -281,7 +278,7 @@ tracks/4/keys = {
 "values": [ Vector2( 20, 0 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/5/path = NodePath("Mods/LazerBeam:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -298,7 +295,7 @@ resource_name = "Idle_M4A1-up"
 length = 0.5
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -310,7 +307,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/1/path = NodePath("Mods/Silencer2:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -322,7 +319,7 @@ tracks/1/keys = {
 "values": [ 2 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/2/path = NodePath("Mods/Silencer2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -334,7 +331,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0.999996, -63 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/3/path = NodePath("Mods/LazerGreen:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -346,7 +343,7 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/4/path = NodePath("Mods/LazerGreen:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -358,7 +355,7 @@ tracks/4/keys = {
 "values": [ Vector2( -1, -32 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/5/path = NodePath("Mods/LazerBeam:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -385,7 +382,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Sprite:frame")
+tracks/1/path = NodePath("Sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -397,7 +394,7 @@ tracks/1/keys = {
 "values": [ 4 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/2/path = NodePath("Mods/Silencer2:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -409,7 +406,7 @@ tracks/2/keys = {
 "values": [ 3 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/3/path = NodePath("Mods/LazerGreen:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -421,7 +418,7 @@ tracks/3/keys = {
 "values": [ 2 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/4/path = NodePath("Mods/LazerBeam:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -433,7 +430,7 @@ tracks/4/keys = {
 "values": [ Vector2( -5.00001, 39 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("CollisionShape2D:position")
+tracks/5/path = NodePath("Pickup/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -445,7 +442,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0.249999 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/6/path = NodePath("Pickup/CollisionShape2D:rotation_degrees")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -457,7 +454,7 @@ tracks/6/keys = {
 "values": [ 90.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/7/path = NodePath("Mods/LazerGreen:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -469,7 +466,7 @@ tracks/7/keys = {
 "values": [ Vector2( -15, 1 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Node2D/Sprite/Mods/LazerGreen:z_index")
+tracks/8/path = NodePath("Mods/LazerGreen:z_index")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -481,7 +478,7 @@ tracks/8/keys = {
 "values": [ 0 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/9/path = NodePath("Mods/Silencer2:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -493,7 +490,7 @@ tracks/9/keys = {
 "values": [ Vector2( -48.0001, -5 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Node2D/Sprite/Mods/Silencer2:rotation_degrees")
+tracks/10/path = NodePath("Mods/Silencer2:rotation_degrees")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -505,7 +502,7 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:frame")
+tracks/11/path = NodePath("MuzzleFlashSprite:frame")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -517,7 +514,7 @@ tracks/11/keys = {
 "values": [ 2 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:visible")
+tracks/12/path = NodePath("MuzzleFlashSprite:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -529,7 +526,7 @@ tracks/12/keys = {
 "values": [ false ]
 }
 tracks/13/type = "value"
-tracks/13/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:rotation_degrees")
+tracks/13/path = NodePath("MuzzleFlashSprite:rotation_degrees")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/imported = false
@@ -541,7 +538,7 @@ tracks/13/keys = {
 "values": [ 0.0 ]
 }
 tracks/14/type = "value"
-tracks/14/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:position")
+tracks/14/path = NodePath("MuzzleFlashSprite:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/imported = false
@@ -553,7 +550,7 @@ tracks/14/keys = {
 "values": [ Vector2( -105.714, -5 ) ]
 }
 tracks/15/type = "value"
-tracks/15/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/15/path = NodePath("Muzzle:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/imported = false
@@ -570,7 +567,7 @@ resource_name = "Shooting_M4A1-down"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -582,7 +579,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/1/path = NodePath("Mods/Silencer2:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -594,7 +591,7 @@ tracks/1/keys = {
 "values": [ 3 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/2/path = NodePath("Mods/Silencer2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -606,7 +603,7 @@ tracks/2/keys = {
 "values": [ Vector2( -1, 64 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/3/path = NodePath("Mods/LazerGreen:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -618,7 +615,7 @@ tracks/3/keys = {
 "values": [ 2 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/4/path = NodePath("Mods/LazerGreen:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -630,7 +627,7 @@ tracks/4/keys = {
 "values": [ Vector2( -4, 31 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/5/path = NodePath("Mods/LazerBeam:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -642,7 +639,7 @@ tracks/5/keys = {
 "values": [ Vector2( -4.00001, 39 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("CollisionShape2D:position")
+tracks/6/path = NodePath("Pickup/CollisionShape2D:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -654,7 +651,7 @@ tracks/6/keys = {
 "values": [ Vector2( 0, -1.19209e-07 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/7/path = NodePath("Pickup/CollisionShape2D:rotation_degrees")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -666,7 +663,7 @@ tracks/7/keys = {
 "values": [ 0.0 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:frame")
+tracks/8/path = NodePath("MuzzleFlashSprite:frame")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -678,7 +675,7 @@ tracks/8/keys = {
 "values": [ 3 ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:visible")
+tracks/9/path = NodePath("MuzzleFlashSprite:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -690,7 +687,7 @@ tracks/9/keys = {
 "values": [ false, true, false ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:position")
+tracks/10/path = NodePath("MuzzleFlashSprite:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -702,7 +699,7 @@ tracks/10/keys = {
 "values": [ Vector2( 0, 96 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:rotation_degrees")
+tracks/11/path = NodePath("MuzzleFlashSprite:rotation_degrees")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -714,7 +711,7 @@ tracks/11/keys = {
 "values": [ 0.0 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/path = NodePath("Muzzle:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -731,7 +728,7 @@ resource_name = "Shooting_M4A1-left"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -743,7 +740,7 @@ tracks/0/keys = {
 "values": [ 1 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/1/path = NodePath("Pickup/CollisionShape2D:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -755,7 +752,7 @@ tracks/1/keys = {
 "values": [ 90.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/path = NodePath("Pickup/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -767,7 +764,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -1.19209e-07 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/3/path = NodePath("Mods/Silencer2:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -779,7 +776,7 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/4/path = NodePath("Mods/Silencer2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -791,7 +788,7 @@ tracks/4/keys = {
 "values": [ Vector2( -48, -5 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/5/path = NodePath("Mods/LazerGreen:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -803,7 +800,7 @@ tracks/5/keys = {
 "values": [ 0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/6/path = NodePath("Mods/LazerGreen:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -815,7 +812,7 @@ tracks/6/keys = {
 "values": [ Vector2( -15, 1 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/7/path = NodePath("Mods/LazerBeam:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -827,7 +824,7 @@ tracks/7/keys = {
 "values": [ Vector2( -25, 0 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:visible")
+tracks/8/path = NodePath("MuzzleFlashSprite:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -839,7 +836,7 @@ tracks/8/keys = {
 "values": [ false, true, false ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:frame")
+tracks/9/path = NodePath("MuzzleFlashSprite:frame")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -851,7 +848,7 @@ tracks/9/keys = {
 "values": [ 0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:rotation_degrees")
+tracks/10/path = NodePath("MuzzleFlashSprite:rotation_degrees")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -863,7 +860,7 @@ tracks/10/keys = {
 "values": [ 0.0 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:position")
+tracks/11/path = NodePath("MuzzleFlashSprite:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -875,7 +872,7 @@ tracks/11/keys = {
 "values": [ Vector2( -105.714, -5 ) ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/path = NodePath("Muzzle:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -892,7 +889,7 @@ resource_name = "Shooting_M4A1-right"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -904,7 +901,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/path = NodePath("Pickup/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -916,7 +913,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -1.19209e-07 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/2/path = NodePath("Pickup/CollisionShape2D:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -928,7 +925,7 @@ tracks/2/keys = {
 "values": [ 90.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/3/path = NodePath("Mods/Silencer2:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -940,7 +937,7 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/4/path = NodePath("Mods/Silencer2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -952,7 +949,7 @@ tracks/4/keys = {
 "values": [ Vector2( 49.0001, -5 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:frame")
+tracks/5/path = NodePath("MuzzleFlashSprite:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -964,7 +961,7 @@ tracks/5/keys = {
 "values": [ 1 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:visible")
+tracks/6/path = NodePath("MuzzleFlashSprite:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -976,7 +973,7 @@ tracks/6/keys = {
 "values": [ false, true, false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/7/path = NodePath("Mods/LazerGreen:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -988,7 +985,7 @@ tracks/7/keys = {
 "values": [ 3 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/8/path = NodePath("Mods/LazerGreen:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -1000,7 +997,7 @@ tracks/8/keys = {
 "values": [ Vector2( 18, -1 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/9/path = NodePath("Mods/LazerBeam:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -1012,7 +1009,7 @@ tracks/9/keys = {
 "values": [ Vector2( 28, -2 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:position")
+tracks/10/path = NodePath("MuzzleFlashSprite:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -1024,7 +1021,7 @@ tracks/10/keys = {
 "values": [ Vector2( 105.714, -6 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:rotation_degrees")
+tracks/11/path = NodePath("MuzzleFlashSprite:rotation_degrees")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -1036,7 +1033,7 @@ tracks/11/keys = {
 "values": [ 0.0 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/path = NodePath("Muzzle:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -1053,7 +1050,7 @@ resource_name = "Shooting_M4A1-up"
 length = 0.3
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D/Sprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1065,7 +1062,7 @@ tracks/0/keys = {
 "values": [ 5 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/path = NodePath("Pickup/CollisionShape2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -1077,7 +1074,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -1.19209e-07 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:rotation_degrees")
+tracks/2/path = NodePath("Pickup/CollisionShape2D:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1089,7 +1086,7 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Node2D/Sprite/Mods/Silencer2:frame")
+tracks/3/path = NodePath("Mods/Silencer2:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1101,7 +1098,7 @@ tracks/3/keys = {
 "values": [ 2 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Node2D/Sprite/Mods/Silencer2:position")
+tracks/4/path = NodePath("Mods/Silencer2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1113,7 +1110,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0.999996, -63 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:frame")
+tracks/5/path = NodePath("MuzzleFlashSprite:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -1125,7 +1122,7 @@ tracks/5/keys = {
 "values": [ 2 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:visible")
+tracks/6/path = NodePath("MuzzleFlashSprite:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -1137,7 +1134,7 @@ tracks/6/keys = {
 "values": [ false, true, false ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("Node2D/Sprite/Mods/LazerGreen:frame")
+tracks/7/path = NodePath("Mods/LazerGreen:frame")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -1149,7 +1146,7 @@ tracks/7/keys = {
 "values": [ 1 ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("Node2D/Sprite/Mods/LazerGreen:position")
+tracks/8/path = NodePath("Mods/LazerGreen:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -1161,7 +1158,7 @@ tracks/8/keys = {
 "values": [ Vector2( -1, -32 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Node2D/Sprite/Mods/LazerBeam:position")
+tracks/9/path = NodePath("Mods/LazerBeam:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -1173,7 +1170,7 @@ tracks/9/keys = {
 "values": [ Vector2( -2, -39 ) ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:position")
+tracks/10/path = NodePath("MuzzleFlashSprite:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -1185,7 +1182,7 @@ tracks/10/keys = {
 "values": [ Vector2( 1.42857, -96 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("Node2D/Sprite/MuzzleFlashSprite:rotation_degrees")
+tracks/11/path = NodePath("MuzzleFlashSprite:rotation_degrees")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -1197,7 +1194,7 @@ tracks/11/keys = {
 "values": [ 0.0 ]
 }
 tracks/12/type = "value"
-tracks/12/path = NodePath("Node2D/Sprite/Muzzle:position")
+tracks/12/path = NodePath("Muzzle:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
@@ -1209,50 +1206,50 @@ tracks/12/keys = {
 "values": [ Vector2( 0, -78 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=50]
+[sub_resource type="AnimationNodeAnimation" id=83]
 animation = "Idle_M4A1-left"
 
-[sub_resource type="AnimationNodeAnimation" id=51]
+[sub_resource type="AnimationNodeAnimation" id=84]
 animation = "Idle_M4A1-down"
 
-[sub_resource type="AnimationNodeAnimation" id=52]
+[sub_resource type="AnimationNodeAnimation" id=85]
 animation = "Idle_M4A1-right"
 
-[sub_resource type="AnimationNodeAnimation" id=78]
+[sub_resource type="AnimationNodeAnimation" id=86]
 animation = "Idle_M4A1-up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=34]
-blend_point_0/node = SubResource( 50 )
+blend_point_0/node = SubResource( 83 )
 blend_point_0/pos = Vector2( -1, 0 )
-blend_point_1/node = SubResource( 51 )
+blend_point_1/node = SubResource( 84 )
 blend_point_1/pos = Vector2( 0, 1 )
-blend_point_2/node = SubResource( 52 )
+blend_point_2/node = SubResource( 85 )
 blend_point_2/pos = Vector2( 1, 0 )
-blend_point_3/node = SubResource( 78 )
+blend_point_3/node = SubResource( 86 )
 blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id=80]
-animation = "Shooting_M4A1-down"
-
 [sub_resource type="AnimationNodeAnimation" id=81]
-animation = "Shooting_M4A1-right"
+animation = "Shooting_TRM17-left"
 
 [sub_resource type="AnimationNodeAnimation" id=82]
-animation = "Shooting_M4A1-up"
+animation = "Shooting_TRM17-down"
 
-[sub_resource type="AnimationNodeAnimation" id=83]
-animation = "Shooting_M4A1-left"
+[sub_resource type="AnimationNodeAnimation" id=68]
+animation = "Shooting_TRM17-right"
+
+[sub_resource type="AnimationNodeAnimation" id=69]
+animation = "Shooting_TRM17-up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id=39]
-blend_point_0/node = SubResource( 80 )
-blend_point_0/pos = Vector2( 0, 1 )
-blend_point_1/node = SubResource( 81 )
-blend_point_1/pos = Vector2( 1, 0 )
-blend_point_2/node = SubResource( 82 )
-blend_point_2/pos = Vector2( 0, -1 )
-blend_point_3/node = SubResource( 83 )
-blend_point_3/pos = Vector2( -1, 0 )
+blend_point_0/node = SubResource( 81 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 82 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 68 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 69 )
+blend_point_3/pos = Vector2( 0, -1 )
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
@@ -1269,58 +1266,54 @@ start_node = "IdleM4A1"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=77]
 
-[node name="M4" type="KinematicBody2D"]
-collision_layer = 16
+[node name="M4" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Pickup" type="Area2D" parent="."]
+scale = Vector2( 0.7, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup"]
 position = Vector2( 0, 0.249999 )
 rotation = 1.5708
+scale = Vector2( 1, 1.42857 )
 shape = SubResource( 54 )
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="Node2D"]
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.7, 1 )
 texture = ExtResource( 2 )
 hframes = 6
 frame = 4
 
-[node name="MuzzleFlashSprite" type="Sprite" parent="Node2D/Sprite"]
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2( -82, -5 )
+scale = Vector2( 0.7, 1 )
+
+[node name="MuzzleFlashSprite" type="Sprite" parent="."]
 visible = false
 position = Vector2( -105.714, -5 )
+scale = Vector2( 0.7, 1 )
 texture = ExtResource( 7 )
 hframes = 4
 frame = 2
 
-[node name="Mods" type="Node2D" parent="Node2D/Sprite"]
-scale = Vector2( 1.42857, 1 )
+[node name="Mods" type="Node2D" parent="."]
+scale = Vector2( 0.999999, 1 )
 
-[node name="Silencer2" type="Sprite" parent="Node2D/Sprite/Mods"]
+[node name="Silencer2" type="Sprite" parent="Mods"]
 position = Vector2( -48.0001, -5 )
 texture = ExtResource( 4 )
 hframes = 4
 frame = 3
 
-[node name="LazerGreen" type="Sprite" parent="Node2D/Sprite/Mods"]
+[node name="LazerGreen" type="Sprite" parent="Mods"]
 position = Vector2( -15, 1 )
 texture = ExtResource( 3 )
 hframes = 4
 frame = 2
 
-[node name="LazerBeam" parent="Node2D/Sprite/Mods" instance=ExtResource( 6 )]
+[node name="LazerBeam" parent="Mods" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( -5.00001, 39 )
-
-[node name="Hitbox" type="Area2D" parent="Node2D/Sprite"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite/Hitbox"]
-visible = false
-position = Vector2( 38.5714, -4 )
-shape = SubResource( 53 )
-
-[node name="Muzzle" type="Node2D" parent="Node2D/Sprite"]
-position = Vector2( -82, -5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle_M4A1-down = SubResource( 55 )

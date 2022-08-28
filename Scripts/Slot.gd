@@ -51,6 +51,14 @@ func refresh_style():
 			find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,true)
 		else:
 			find_parent("Inventory")._on_set_backpack(find_parent("Inventory").equip_slots[4].slot_type,false)
+	if slot_type == SlotType.HOTBAR:
+		if find_parent("Hotbar").slots[0].item:
+			find_parent("Hotbar")._on_set_assault_rifle(find_parent("Hotbar").slots[0].slot_type,true)
+			find_parent("Hotbar")._on_set_mining_drill(find_parent("Hotbar").slots[0].slot_type,true)
+		else:
+			find_parent("Hotbar")._on_set_assault_rifle(find_parent("Hotbar").slots[0].slot_type,false)
+			find_parent("Hotbar")._on_set_mining_drill(find_parent("Hotbar").slots[0].slot_type,false)
+			
 	if SlotType.HOTBAR == slot_type and PlayerInventory.active_item_slot == slot_index:
 		set('custom_styles/panel', selected_style)
 	elif item == null:
